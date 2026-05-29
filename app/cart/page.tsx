@@ -412,7 +412,6 @@ export default function CartPage() {
                   />
                 </PayPalScriptProvider>
 
-                <div className="text-xs text-white/50 mt-4">Real PayPal checkout. Printful order created only after payment succeeds.</div>
               </div>
             )}
 
@@ -438,7 +437,6 @@ export default function CartPage() {
             </div>
 
             <p className="text-xs text-white/40 text-center mt-6 tracking-widest">
-              This is a demo. No payment processed.
             </p>
           </div>
         </div>
