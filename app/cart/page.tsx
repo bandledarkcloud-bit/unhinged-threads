@@ -1,5 +1,5 @@
 'use client';
-
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, updateQuantity, removeFromCart, CartItem } from '@/lib/cart';
@@ -8,26 +8,46 @@ import Header from '@/components/Header';
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const fetchCart = async () => {
+    setLoading(true);
+    const items = await getCart();
+    setCart(items);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setCart(getCart());
+    fetchCart();
   }, []);
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const handleUpdateQuantity = (id: string, size: string, newQuantity: number) => {
-    const updated = updateQuantity(id, size, newQuantity);
-    setCart(updated);
+  const handleUpdateQuantity = async (id: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    await updateQuantity(id, newQuantity);
+    await fetchCart();
   };
 
-  const handleRemove = (id: string, size: string) => {
-    const updated = removeFromCart(id, size);
-    setCart(updated);
+  const handleRemove = async (id: string) => {
+    await removeFromCart(id);
+    await fetchCart();
   };
 
   const handleCheckout = () => {
     setShowCheckout(true);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black text-white font-mono">
+        <Header />
+        <div className="flex items-center justify-center min-h-[70vh]">
+          <div className="text-white/60">Loading cart...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (
@@ -55,32 +75,36 @@ export default function CartPage() {
       <Header />
 
       <div className="max-w-5xl mx-auto px-6 pt-12 pb-20">
-        <h1 className="text-5xl font-black tracking-[-3px] mb-10">YOUR CART</h1>
+        <h1 className="text-4xl md:text-5xl font-black tracking-[-3px] mb-10">YOUR CART</h1>
 
         <div className="space-y-6">
           {cart.map((item, index) => (
-            <div key={`${item.id}-${item.size}-${index}`} className="flex flex-col sm:flex-row gap-6 border border-white/10 bg-zinc-950 p-6">
+            <div key={`${item.id}-${index}`} className="flex flex-col sm:flex-row gap-6 border border-white/10 bg-zinc-950 p-6">
               <div className="w-full sm:w-28 h-28 bg-black border border-white/10 flex-shrink-0 overflow-hidden">
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                <img 
+                  src={item.image || '/products/placeholder.png'} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover" 
+                />
               </div>
 
               <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <div className="font-black text-xl tracking-[-1px]">{item.title}</div>
-                  <div className="text-sm text-white/60 mt-0.5">Size: {item.size}</div>
+                  {item.size && <div className="text-sm text-white/60 mt-0.5">Size: {item.size}</div>}
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex items-center gap-4">
                     <button 
-                      onClick={() => handleUpdateQuantity(item.id, item.size, item.quantity - 1)}
+                      onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
                       className="w-9 h-9 border border-white/40 hover:bg-white hover:text-black transition-all text-lg leading-none"
                     >
                       −
                     </button>
                     <div className="font-mono w-8 text-center text-lg">{item.quantity}</div>
                     <button 
-                      onClick={() => handleUpdateQuantity(item.id, item.size, item.quantity + 1)}
+                      onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
                       className="w-9 h-9 border border-white/40 hover:bg-white hover:text-black transition-all text-lg leading-none"
                     >
                       +
@@ -92,7 +116,7 @@ export default function CartPage() {
                       ${(item.price * item.quantity).toFixed(2)}
                     </div>
                     <button 
-                      onClick={() => handleRemove(item.id, item.size)}
+                      onClick={() => handleRemove(item.id)}
                       className="text-sm text-white/50 hover:text-[#ff0088] transition-colors tracking-widest"
                     >
                       REMOVE
@@ -111,7 +135,7 @@ export default function CartPage() {
 
           <button 
             onClick={handleCheckout}
-            className="mt-8 px-16 py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px] active:bg-white active:text-black transition-all"
+            className="mt-8 w-full md:w-auto px-16 py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px] active:bg-white active:text-black transition-all"
           >
             PROCEED TO CHECKOUT
           </button>

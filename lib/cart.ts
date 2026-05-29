@@ -1,63 +1,99 @@
+import { products } from "./products";
+import { supabase } from './supabase'
+
 export type CartItem = {
-  id: string;
-  title: string;
-  price: number;
-  size: string;
-  image: string;
-  quantity: number;
-};
-
-const CART_KEY = 'unhinged_cart';
-
-export function getCart(): CartItem[] {
-  if (typeof window === 'undefined') return [];
-  const stored = localStorage.getItem(CART_KEY);
-  return stored ? JSON.parse(stored) : [];
+  id: string
+  slug: string
+  title: string
+  price: number
+  quantity: number
+  size?: string
+  image?: string
 }
 
-export function saveCart(cart: CartItem[]) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  window.dispatchEvent(new CustomEvent('cartUpdated'));
-}
+// Get or create a cart ID (stored in localStorage)
+function getOrCreateCartId(): string {
+  if (typeof window === 'undefined') return ''
 
-export function addToCart(item: Omit<CartItem, 'quantity'>) {
-  const cart = getCart();
-  const existing = cart.findIndex(
-    (i) => i.id === item.id && i.size === item.size
-  );
+  let cartId = localStorage.getItem('cart_id')
 
-  if (existing !== -1) {
-    cart[existing].quantity += 1;
-  } else {
-    cart.push({ ...item, quantity: 1 });
+  if (!cartId) {
+    cartId = crypto.randomUUID()
+    localStorage.setItem('cart_id', cartId)
   }
 
-  saveCart(cart);
-  return cart;
+  return cartId
 }
 
-export function updateQuantity(id: string, size: string, quantity: number) {
-  const cart = getCart();
-  const item = cart.find((i) => i.id === id && i.size === size);
-  if (item) {
-    item.quantity = quantity;
-    if (item.quantity <= 0) {
-      return removeFromCart(id, size);
-    }
+// Get all items in the current cart
+export async function getCart(): Promise<CartItem[]> {
+  const cartId = getOrCreateCartId()
+  if (!supabase || !cartId) return []
+
+  const { data, error } = await supabase
+    .from('cart_items')
+    .select('*')
+    .eq('cart_id', cartId)
+
+  if (error) {
+    console.error('Error fetching cart:', error)
+    return []
   }
-  saveCart(cart);
-  return cart;
+
+  return (data || []).map((item) => {
+    const product = products.find(p => p.slug === item.product_slug);
+    return {
+      id: item.id,
+      slug: item.product_slug,
+      title: product?.title || item.product_slug,
+      price: product?.price || 29.99,
+      quantity: item.quantity,
+      image: product ? `/products/${item.product_slug}/roxy.png` : undefined,
+    };
+  });
+
 }
 
-export function removeFromCart(id: string, size: string) {
-  let cart = getCart();
-  cart = cart.filter((i) => !(i.id === id && i.size === size));
-  saveCart(cart);
-  return cart;
+// Add item to cart
+export async function addToCart(productSlug: string, quantity = 1) {
+  const cartId = getOrCreateCartId()
+  if (!supabase || !cartId) return
+
+  const { error } = await supabase
+    .from('cart_items')
+    .insert({
+      cart_id: cartId,
+      product_slug: productSlug,
+      quantity,
+    })
+
+  if (error) {
+    console.error('Error adding to cart:', error)
+  }
 }
 
-export function clearCart() {
-  if (typeof window === 'undefined') return;
-  localStorage.removeItem(CART_KEY);
+// Update quantity of a cart item
+export async function updateQuantity(itemId: string, quantity: number) {
+  if (!supabase) return
+  const { error } = await supabase
+    .from('cart_items')
+    .update({ quantity })
+    .eq('id', itemId)
+
+  if (error) {
+    console.error('Error updating quantity:', error)
+  }
+}
+
+// Remove item from cart
+export async function removeFromCart(itemId: string) {
+  if (!supabase) return
+  const { error } = await supabase
+    .from('cart_items')
+    .delete()
+    .eq('id', itemId)
+
+  if (error) {
+    console.error('Error removing from cart:', error)
+  }
 }

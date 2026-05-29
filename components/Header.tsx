@@ -2,40 +2,32 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { getCart } from '@/lib/cart';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-
-  const getCartCount = () => {
+  const fetchCartCount = async () => {
     try {
-      const cart = localStorage.getItem('unhinged_cart');
-      if (!cart) return 0;
-      const items = JSON.parse(cart);
-      return items.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
+      const items = await getCart();
+      const count = items.reduce((sum, item) => sum + item.quantity, 0);
+      setCartCount(count);
     } catch {
-      return 0;
+      setCartCount(0);
     }
   };
 
+
   useEffect(() => {
-    setCartCount(getCartCount());
+    fetchCartCount();
 
-    const handleStorageChange = () => {
-      setCartCount(getCartCount());
-    };
-
-    // Listen for storage changes (other tabs)
-    window.addEventListener('storage', handleStorageChange);
-
-    // Listen for custom cart update events (same tab)
     const handleCartUpdate = () => {
-      setCartCount(getCartCount());
+      fetchCartCount();
     };
+
     window.addEventListener('cartUpdated', handleCartUpdate);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('cartUpdated', handleCartUpdate);
     };
   }, []);

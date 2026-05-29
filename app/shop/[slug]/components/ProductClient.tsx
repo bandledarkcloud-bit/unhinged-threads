@@ -9,13 +9,7 @@ export default function ProductClient({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
 
   const handleAddToCart = () => {
-    addToCart({
-      id: product.slug,
-      title: product.title,
-      price: product.price,
-      size: selectedSize,
-      image: `/products/${product.slug}/roxy.png`,
-    });
+    addToCart(product.slug);
     
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
