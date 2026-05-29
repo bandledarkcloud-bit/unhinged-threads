@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 const weeklyProduct = {
-  title: "CERTIFIED COUGAR BAIT",
+  title: "GOOD GIRL",
   price: 29.99,
   tag: "ADULT HUMOR",
-  desc: "For men who prefer experience over innocence.",
+  desc: "She wants to hear it even when she's not.",
 };
 
 export default function UnhingedHome() {
-  const slug = "certified-cougar-bait";
+  const slug = "good-girl";
 
   const flavorRows = [
     { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },
@@ -75,7 +75,7 @@ export default function UnhingedHome() {
                   <Link href={`/shop/${slug}`}>
                     <img 
                       src={`/products/${slug}/roxy.png`} 
-                      alt="Certified Cougar Bait Shirt"
+                      alt="Good Girl Shirt"
                       className="w-full h-full object-cover"
                     />
                   </Link>

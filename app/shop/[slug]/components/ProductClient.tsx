@@ -5,11 +5,12 @@ import { Product } from '@/lib/products';
 import { addToCart } from '@/lib/cart';
 
 export default function ProductClient({ product }: { product: Product }) {
-  const [selectedSize, setSelectedSize] = useState("L");
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0] || "L");
   const [added, setAdded] = useState(false);
 
-  const handleAddToCart = () => {
-    addToCart(product.slug);
+  const handleAddToCart = async () => {
+    await addToCart(product.slug, 1, selectedSize);
+    window.dispatchEvent(new Event('cartUpdated'));
     
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
