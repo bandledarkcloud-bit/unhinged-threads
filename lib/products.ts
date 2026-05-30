@@ -112,4 +112,26 @@ export const products: Product[] = [
       "2XL": 32392530078,
     },
   },
+  {
+    slug: "not-responsible-face",
+    title: "NOT RESPONSIBLE FOR MY FACE",
+    price: 29.99,
+    flavor: "RELATIONSHIP CHAOS",
+    bullets: [
+      { icon: "😶", text: "I am not responsible for what my face does when you talk" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "Not Responsible For My Face T-Shirt | Unhinged Threads",
+    metaDescription: "I am not responsible for what my face does when you talk.",
+    printfulVariants: {
+      S: 32197048323,
+      M: 32505717324,
+      L: 32505717322,
+      XL: 32197048321,
+      "2XL": 32505717320,
+    },
+  },
 ];
