@@ -187,7 +187,7 @@ export default function UnhingedHome() {
           </a>
         </div>
         <div className="text-xs text-[#ff0088] tracking-widest">
-          © UNHINGED THREADS™ — NO REFUNDS. NO REGRETS.
+          © UNHINGED THREADS™ — NO REFUNDS. NO REGRETS.<br/><span className="text-white/60">hellothere@threadglitch.com</span>
         </div>
       </footer>
     </div>
