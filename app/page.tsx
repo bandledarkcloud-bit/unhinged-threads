@@ -149,6 +149,46 @@ export default function UnhingedHome() {
           </div>
         </div>
       </section>
+      {/* WEEKLY DROP - Larger featured section */}
+      <section className="py-16 bg-black border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="mb-6">
+            <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-1">THIS WEEK&apos;S DEGENERACY</div>
+            <h2 className="text-[#9b00ff] text-6xl font-black tracking-[-4px] leading-none">FRESH CHAOS</h2>
+          </div>
+
+          <div className="max-w-md">
+            <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
+              <div className="aspect-square bg-black border border-white/10 overflow-hidden">
+                <Link href={`/shop/${slug}`}>
+                  <img 
+                    src={`/products/${slug}/roxy.png`} 
+                    alt="Good Girl Shirt"
+                    className="w-full h-full object-cover"
+                  />
+                </Link>
+              </div>
+              <div className="p-6">
+                <Link href={`/shop/${slug}`}>
+                  <h3 className="font-black text-3xl tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-2">
+                    {weeklyProduct.title}
+                  </h3>
+                </Link>
+                <div className="text-lg text-white/70 mb-4">{weeklyProduct.desc}</div>
+                <div className="flex items-center justify-between">
+                  <div className="text-4xl font-black">${weeklyProduct.price}</div>
+                  <Link 
+                    href={`/shop/${slug}`}
+                    className="px-8 py-3 bg-white text-black text-sm font-black active:bg-[#ff0088] active:text-white transition-all"
+                  >
+                    ADD TO CART
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* RESPECT THE GLITCH - Full lower section */}
       <section className="py-20 bg-black border-t border-white/10">
