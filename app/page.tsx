@@ -138,7 +138,7 @@ export default function UnhingedHome() {
                     <div className="text-2xl font-black">${product.price}</div>
                     <Link 
                       href={`/shop/${product.slug}`}
-                      className="px-4 py-1.5 bg-white text-black text-xs font-black active:bg-[#ff0088] active:text-white transition-all"
+                      className="px-3 py-1 bg-white text-black text-[10px] font-black active:bg-[#ff0088] active:text-white transition-all"
                     >
                       ADD TO CART
                     </Link>
