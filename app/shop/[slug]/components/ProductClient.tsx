@@ -40,7 +40,7 @@ export default function ProductClient({ product }: { product: Product }) {
 
       <button 
         onClick={handleAddToCart}
-        className={`mt-10 w-full py-4 text-xl font-black transition-all ${
+        className={`mt-10 w-full py-3 md:py-4 text-lg md:text-xl font-black transition-all ${
           added 
             ? 'bg-[#39ff14] text-black' 
             : 'bg-white text-black active:bg-[#ff0088] active:text-white'
