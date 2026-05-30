@@ -74,7 +74,7 @@ export default function UnhingedHome() {
                 <div className="aspect-square bg-black border border-white/10 overflow-hidden">
                   <Link href={`/shop/${slug}`}>
                     <img 
-                      src={`/products/${slug}/roxy.png`} 
+                      src={`/products/${slug}/shirt.png`} 
                       alt="Good Girl Shirt"
                       className="w-full h-full object-cover"
                     />
@@ -120,7 +120,7 @@ export default function UnhingedHome() {
                 <Link href={`/shop/${product.slug}`} className="block">
                   <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
                     <img 
-                      src={`/products/${product.slug}/roxy.png`} 
+                      src={`/products/${product.slug}/shirt.png`} 
                       alt={product.title}
                       className="w-full h-full object-cover"
                     />

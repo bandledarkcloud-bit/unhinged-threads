@@ -17,10 +17,10 @@ export default function ProductImageGallery({ slug, title }: ProductImageGallery
         {/* Image 1 - Click to zoom */}
         <div 
           className="aspect-square bg-zinc-950 border border-white/10 overflow-hidden cursor-zoom-in hover:border-[#ff0088] transition-colors"
-          onClick={() => setZoomedImage(`/products/${slug}/roxy.png`)}
+          onClick={() => setZoomedImage(`/products/${slug}/shirt.png`)}
         >
           <img 
-            src={`/products/${slug}/roxy.png`} 
+            src={`/products/${slug}/shirt.png`} 
             alt={title}
             className="w-full h-full object-cover"
           />
@@ -28,11 +28,11 @@ export default function ProductImageGallery({ slug, title }: ProductImageGallery
         {/* Image 2 - Click to zoom */}
         <div 
           className="aspect-square bg-zinc-950 border border-white/10 overflow-hidden cursor-zoom-in hover:border-[#ff0088] transition-colors"
-          onClick={() => setZoomedImage(`/products/${slug}/shirt.png`)}
+          onClick={() => setZoomedImage(`/products/${slug}/roxy.png`)}
         >
           <img 
-            src={`/products/${slug}/shirt.png`} 
-            alt={`${title} shirt detail`}
+            src={`/products/${slug}/roxy.png`} 
+            alt={`${title} on model`}
             className="w-full h-full object-cover"
           />
         </div>
