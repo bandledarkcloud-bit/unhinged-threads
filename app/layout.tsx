@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Bebas_Neue, Anton, Oswald } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -74,6 +75,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-black text-white">
         {children}
+        <Footer />
 
         {/* Google Analytics */}
         <Script
