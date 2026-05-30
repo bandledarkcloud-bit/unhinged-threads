@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import { getProduct } from '@/lib/products';
 import ProductClient from './components/ProductClient';
 import ProductImageGallery from './components/ProductImageGallery';
-import SizeSelector from './components/SizeSelector';
 import Header from '@/components/Header';
 import type { Metadata } from 'next';
 
