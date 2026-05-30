@@ -211,4 +211,7 @@ export default function UnhingedHome() {
           </div>
         </div>
       </section>
+    </div>
+  );
 }
+
