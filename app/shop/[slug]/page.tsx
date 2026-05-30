@@ -60,7 +60,7 @@ export default async function ProductPage({ params }: Props) {
       <Header />
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start lg:items-center">
+        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-center">
           {/* Interactive Image Gallery (client component with zoom) */}
           <ProductImageGallery slug={slug} title={product.title} />
 
