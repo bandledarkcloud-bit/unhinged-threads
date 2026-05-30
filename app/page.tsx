@@ -103,64 +103,50 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-      {/* BROWSE BY VIBE */}
+      {/* BEST SELLERS */}
       <section className="pb-20 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6 pt-10">
-          <div className="mb-10">
-            <div className="text-[#ff0088] text-xs tracking-[4px] mb-1">PICK YOUR POISON</div>
-            <h2 className="text-4xl sm:text-5xl font-black tracking-[-3px] text-[#9b00ff]">FLAVORS OF UNHINGED</h2>
+          <div className="mb-8">
+            <div className="text-[#ff0088] text-xs tracking-[4px] mb-1">TOP DEGENERACY</div>
+            <h2 className="text-4xl sm:text-5xl font-black tracking-[-3px] text-[#9b00ff]">BEST SELLERS</h2>
           </div>
 
-          {flavorRows.map((row, index) => {
-            const flavorProducts = productsByFlavor[row.header] || [];
-            if (flavorProducts.length === 0) return null;
-
-            return (
-              <div key={index} className="mb-12">
-                <div className="mb-4">
-                  <h3 className="text-2xl font-black tracking-[-1px] text-[#39ff14]">{row.header}</h3>
-                  <p className="text-sm text-white/60">{row.sub}</p>
-                </div>
-
-                <div className="grid grid-cols-5 gap-4">
-                  {flavorProducts.slice(0, 5).map((product) => (
-                    <div 
-                      key={product.slug} 
-                      className="border border-white/10 bg-black flex flex-col"
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {products.map((product) => (
+              <div 
+                key={product.slug} 
+                className="border border-white/10 bg-black flex flex-col"
+              >
+                <Link href={`/shop/${product.slug}`} className="block">
+                  <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
+                    <img 
+                      src={`/products/${product.slug}/roxy.png`} 
+                      alt={product.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </Link>
+                
+                <div className="p-4 flex flex-col flex-1">
+                  <Link href={`/shop/${product.slug}`}>
+                    <h3 className="font-black text-lg tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-1">
+                      {product.title}
+                    </h3>
+                  </Link>
+                  
+                  <div className="mt-auto pt-3 flex items-center justify-between">
+                    <div className="text-2xl font-black">${product.price}</div>
+                    <Link 
+                      href={`/shop/${product.slug}`}
+                      className="px-4 py-1.5 bg-white text-black text-xs font-black active:bg-[#ff0088] active:text-white transition-all"
                     >
-                      <Link href={`/shop/${product.slug}`} className="block">
-                        <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
-                          <img 
-                            src={`/products/${product.slug}/roxy.png`} 
-                            alt={product.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </Link>
-                      
-                      <div className="p-4 flex flex-col flex-1">
-                        <Link href={`/shop/${product.slug}`}>
-                          <h3 className="font-black text-lg tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-1">
-                            {product.title}
-                          </h3>
-                        </Link>
-                        
-                        <div className="mt-auto pt-3 flex items-center justify-between">
-                          <div className="text-2xl font-black">${product.price}</div>
-                          <Link 
-                            href={`/shop/${product.slug}`}
-                            className="px-4 py-1.5 bg-white text-black text-xs font-black active:bg-[#ff0088] active:text-white transition-all"
-                          >
-                            ADD TO CART
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                      ADD TO CART
+                    </Link>
+                  </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
