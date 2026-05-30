@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://unhingedthreads.com/sitemap.xml',
+    sitemap: 'https://threadglitch.com/sitemap.xml',
   };
 }
