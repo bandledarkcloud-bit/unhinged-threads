@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getProduct } from '@/lib/products';
 import ProductClient from './components/ProductClient';
 import ProductImageGallery from './components/ProductImageGallery';
+import SizeSelector from './components/SizeSelector';
 import Header from '@/components/Header';
 import type { Metadata } from 'next';
 
@@ -15,15 +16,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: 'Product Not Found | Unhinged Threads',
+      title: 'Product Not Found',
     };
   }
 
   return {
     title: product.metaTitle || `${product.title} | Unhinged Threads`,
-    description: product.metaDescription || `Shop ${product.title} at Unhinged Threads.`,
+    description: product.metaDescription,
     openGraph: {
-      images: [`/products/${slug}/roxy.png`],
+      title: product.metaTitle || product.title,
+      description: product.metaDescription,
+      images: [{ url: `/products/${slug}/roxy.png` }],
     },
   };
 }
@@ -61,10 +64,21 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-center">
-          {/* Interactive Image Gallery (client component with zoom) */}
-          <ProductImageGallery slug={slug} title={product.title} />
+          {/* Left Column - Images + Size Selector (on mobile) */}
+          <div>
+            <ProductImageGallery slug={slug} title={product.title} />
+            
+            {/* Size selector - visible on mobile, hidden on lg+ */}
+            <div className="mt-4 lg:hidden">
+              <SizeSelector 
+                sizes={product.sizes} 
+                selectedSize="L" 
+                onSizeChange={() => {}} 
+              />
+            </div>
+          </div>
 
-          {/* Details - vertically centered */}
+          {/* Right Column - Details */}
           <div className="flex flex-col pt-2">
             <div>
               <div className="text-[#ff0088] text-xs tracking-[4px] mb-2">{product.flavor}</div>
@@ -85,7 +99,11 @@ export default async function ProductPage({ params }: Props) {
               </ul>
             </div>
 
-            <ProductClient product={product} />
+            <ProductClient 
+              product={product} 
+              selectedSize="L" 
+              onSizeChange={() => {}} 
+            />
           </div>
         </div>
       </div>
