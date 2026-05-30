@@ -15,17 +15,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: 'Product Not Found',
+      title: 'Product Not Found | Unhinged Threads',
     };
   }
 
   return {
     title: product.metaTitle || `${product.title} | Unhinged Threads`,
-    description: product.metaDescription,
+    description: product.metaDescription || `Shop ${product.title} at Unhinged Threads.`,
     openGraph: {
-      title: product.metaTitle || product.title,
-      description: product.metaDescription,
-      images: [{ url: `/products/${slug}/roxy.png` }],
+      images: [`/products/${slug}/roxy.png`],
     },
   };
 }
@@ -62,30 +60,19 @@ export default async function ProductPage({ params }: Props) {
       <Header />
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
-        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-center">
-          {/* Left Column - Images + Size Selector (on mobile) */}
-          <div>
-            <ProductImageGallery slug={slug} title={product.title} />
-            
-            {/* Size selector - visible on mobile, hidden on lg+ */}
-            <div className="mt-4 lg:hidden">
-              <SizeSelector 
-                sizes={product.sizes} 
-                selectedSize="L" 
-                onSizeChange={() => {}} 
-              />
-            </div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start lg:items-center">
+          {/* Interactive Image Gallery (client component with zoom) */}
+          <ProductImageGallery slug={slug} title={product.title} />
 
-          {/* Right Column - Details */}
+          {/* Details - vertically centered */}
           <div className="flex flex-col pt-2">
             <div>
               <div className="text-[#ff0088] text-xs tracking-[4px] mb-2">{product.flavor}</div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-[-3px] leading-none mb-4">{product.title}</h1>
-              <div className="text-2xl md:text-4xl font-black tracking-tight mb-8">${product.price}</div>
+              <h1 className="text-4xl sm:text-5xl font-black tracking-[-3px] leading-none mb-4">{product.title}</h1>
+              <div className="text-4xl font-black tracking-tight mb-8">${product.price}</div>
             </div>
 
-            <div className="text-base md:text-lg text-white mb-8 pr-4">
+            <div className="text-lg text-white mb-8 pr-4">
               {product.metaDescription}
             </div>
 
@@ -98,11 +85,7 @@ export default async function ProductPage({ params }: Props) {
               </ul>
             </div>
 
-            <ProductClient 
-              product={product} 
-              selectedSize="L" 
-              onSizeChange={() => {}} 
-            />
+            <ProductClient product={product} />
           </div>
         </div>
       </div>
