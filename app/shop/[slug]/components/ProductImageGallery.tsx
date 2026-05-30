@@ -13,7 +13,7 @@ export default function ProductImageGallery({ slug, title }: ProductImageGallery
   return (
     <>
       {/* 2 Images + 1 Video - Square */}
-      <div className="flex flex-col gap-3 max-w-[256px] lg:ml-auto">
+      <div className="flex flex-col gap-3 max-w-[180px] md:max-w-[256px] lg:ml-auto">
         {/* Image 1 - Click to zoom */}
         <div 
           className="aspect-square bg-zinc-950 border border-white/10 overflow-hidden cursor-zoom-in hover:border-[#ff0088] transition-colors"
