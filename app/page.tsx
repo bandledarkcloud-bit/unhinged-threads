@@ -152,12 +152,12 @@ export default function UnhingedHome() {
       {/* WEEKLY DROP - Larger featured section */}
       <section className="py-16 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="mb-6">
+          <div className="mb-6 text-center">
             <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-1">THIS WEEK&apos;S DEGENERACY</div>
             <h2 className="text-[#9b00ff] text-6xl font-black tracking-[-4px] leading-none">FRESH CHAOS</h2>
           </div>
 
-          <div className="max-w-md">
+          <div className="max-w-md mx-auto">
             <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
               <div className="aspect-square bg-black border border-white/10 overflow-hidden">
                 <Link href={`/shop/${slug}`}>
