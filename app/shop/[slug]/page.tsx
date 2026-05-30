@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: Props) {
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://unhingedthreads.com/shop/${slug}`,
+      "url": `https://threadglitch.com/shop/${slug}`,
       "priceCurrency": "USD",
       "price": product.price,
       "availability": "https://schema.org/InStock"
