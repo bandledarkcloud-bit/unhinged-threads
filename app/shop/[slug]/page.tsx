@@ -68,11 +68,11 @@ export default async function ProductPage({ params }: Props) {
           <div className="flex flex-col pt-2">
             <div>
               <div className="text-[#ff0088] text-xs tracking-[4px] mb-2">{product.flavor}</div>
-              <h1 className="text-4xl sm:text-5xl font-black tracking-[-3px] leading-none mb-4">{product.title}</h1>
-              <div className="text-4xl font-black tracking-tight mb-8">${product.price}</div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-[-3px] leading-none mb-4">{product.title}</h1>
+              <div className="text-2xl md:text-4xl font-black tracking-tight mb-8">${product.price}</div>
             </div>
 
-            <div className="text-lg text-white mb-8 pr-4">
+            <div className="text-base md:text-lg text-white mb-8 pr-4">
               {product.metaDescription}
             </div>
 
