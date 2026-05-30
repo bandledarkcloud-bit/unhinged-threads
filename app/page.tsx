@@ -111,7 +111,7 @@ export default function UnhingedHome() {
             <h2 className="text-4xl sm:text-5xl font-black tracking-[-3px] text-[#9b00ff]">BEST SELLERS</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {products.map((product) => (
               <div 
                 key={product.slug} 
