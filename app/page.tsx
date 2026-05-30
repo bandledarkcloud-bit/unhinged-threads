@@ -120,7 +120,7 @@ export default function UnhingedHome() {
                 <Link href={`/shop/${product.slug}`} className="block">
                   <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
                     <img 
-                      src={`/products/${product.slug}/shirt.png`} 
+                      src={`/products/${product.slug}/roxy.png`} 
                       alt={product.title}
                       className="w-full h-full object-cover"
                     />
