@@ -40,7 +40,7 @@ export default function ShopPage() {
                   <div className="text-2xl font-black">${product.price}</div>
                   <Link 
                     href={`/shop/${product.slug}`}
-                    className="px-4 py-1.5 bg-white text-black text-xs font-black hover:bg-[#ff0088] hover:text-white active:bg-[#ff0088] active:text-white transition-all"
+                    className="px-2.5 py-0.5 bg-white text-black text-[9px] font-black inline-flex items-center justify-center active:bg-[#ff0088] active:text-white transition-all"
                   >
                     ADD TO CART
                   </Link>
