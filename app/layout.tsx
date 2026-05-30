@@ -28,7 +28,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://unhingedthreads.com"),
+  metadataBase: new URL("https://threadglitch.com"),
   title: {
     default: "UNHINGED THREADS™ | Respect The Glitch",
     template: "%s | UNHINGED THREADS",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://unhingedthreads.com",
+    canonical: "https://threadglitch.com",
   },
 };
 
@@ -75,7 +75,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-black text-white">
         {children}
 
-        {/* Google Analytics - Replace G-XXXXXXXXXX with your actual Measurement ID */}
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HZJG2GFXW6"
           strategy="afterInteractive"
