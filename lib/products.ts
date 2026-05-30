@@ -7,7 +7,30 @@ export type Product = {
     icon: string;
     text: string;
   }>;
-  sizes: string[];
+  sizes: string[  {
+    slug: "white-boy-summer-2",
+    title: "WHITE BOY SUMMER 2",
+    price: 29.99,
+    flavor: "MENTAL HEALTH",
+    bullets: [
+      { icon: "☀️", text: "White Boy Summer — Certified" },
+      { icon: "🧴", text: "SPF 50 and zero shame" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Won't crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "White Boy Summer T-Shirt | Unhinged Threads",
+    metaDescription: "White Boy Summer. Certified.",
+    printfulVariants: {
+      S: 32088638211,
+      M: 32392530080,
+      L: 32088638209,
+      XL: 32088638207,
+      "2XL": 32392530078,
+    },
+  },
+];
   metaTitle?: string;
   metaDescription?: string;
   printfulVariants?: Record<string, number>;
