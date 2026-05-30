@@ -60,23 +60,28 @@ export default async function ProductPage({ params }: Props) {
       <Header />
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start lg:items-center">
-          {/* Interactive Image Gallery (client component with zoom) */}
-          <ProductImageGallery slug={slug} title={product.title} />
+        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-center">
+          {/* Left column: Images + Size + Cart */}
+          <div>
+            <ProductImageGallery slug={slug} title={product.title} />
+            <div className="mt-6">
+              <ProductClient product={product} />
+            </div>
+          </div>
 
-          {/* Details - vertically centered */}
+          {/* Right column: Text only */}
           <div className="flex flex-col pt-2">
             <div>
               <div className="text-[#ff0088] text-xs tracking-[4px] mb-2">{product.flavor}</div>
-              <h1 className="text-4xl sm:text-5xl font-black tracking-[-3px] leading-none mb-4">{product.title}</h1>
-              <div className="text-4xl font-black tracking-tight mb-8">${product.price}</div>
+              <h1 className="font-black text-[21px] tracking-[-1px] text-white mb-2">{product.title}</h1>
+              <div className="text-[29px] font-black tracking-tight mb-6">${product.price}</div>
             </div>
 
-            <div className="text-lg text-white mb-8 pr-4">
+            <div className="text-base text-white mb-6 pr-4">
               {product.metaDescription}
             </div>
 
-            <div className="mb-8">
+            <div>
               <div className="text-sm tracking-[3px] text-white mb-3">DETAILS</div>
               <ul className="space-y-1 text-sm text-white">
                 {product.bullets.map((bullet, i) => (
@@ -84,8 +89,6 @@ export default async function ProductPage({ params }: Props) {
                 ))}
               </ul>
             </div>
-
-            <ProductClient product={product} />
           </div>
         </div>
       </div>
