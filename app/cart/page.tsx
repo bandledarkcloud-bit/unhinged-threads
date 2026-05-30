@@ -187,14 +187,14 @@ export default function CartPage() {
                   <div className="flex items-center gap-4">
                     <button 
                       onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                      className="w-9 h-9 border border-white/40 hover:bg-white hover:text-black transition-all text-lg leading-none"
+                      className="w-8 h-8 border border-white/40 hover:bg-white hover:text-black transition-all text-base md:w-9 md:h-9 md:text-lg leading-none"
                     >
                       −
                     </button>
                     <div className="font-mono w-8 text-center text-lg">{item.quantity}</div>
                     <button 
                       onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                      className="w-9 h-9 border border-white/40 hover:bg-white hover:text-black transition-all text-lg leading-none"
+                      className="w-8 h-8 border border-white/40 hover:bg-white hover:text-black transition-all text-base md:w-9 md:h-9 md:text-lg leading-none"
                     >
                       +
                     </button>
@@ -221,12 +221,12 @@ export default function CartPage() {
           <div>
             <div className="text-sm tracking-[3px] text-white/60">SUBTOTAL</div>
             <div className="text-4xl font-black tracking-tight">${subtotal.toFixed(2)}</div>
-            <div className="text-sm text-[#39ff14] mt-1">Free shipping</div>
+            <div className="text-sm text-white/60 mt-1">Shipping calculated at checkout</div>
           </div>
 
           <button 
             onClick={openCheckout}
-            className="w-full sm:w-auto px-12 py-4 bg-[#ff0088] text-white font-black text-xl tracking-[1px] active:bg-white active:text-black transition-all"
+            className="w-full sm:w-auto px-8 py-3 bg-[#ff0088] text-white font-black text-lg md:text-xl md:py-4 md:px-12 tracking-[1px] active:bg-white active:text-black transition-all"
           >
             CHECKOUT
           </button>
@@ -359,9 +359,9 @@ export default function CartPage() {
                     <span>Subtotal</span>
                     <span>${subtotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between text-sm text-[#39ff14]">
+                  <div className="flex justify-between text-sm text-white/60">
                     <span>Shipping</span>
-                    <span>FREE</span>
+                    <span>Calculated at checkout</span>
                   </div>
                   <div className="flex justify-between font-black text-xl pt-2 border-t border-white/10">
                     <span>TOTAL</span>
@@ -419,7 +419,7 @@ export default function CartPage() {
               {!showPaymentStep ? (
                 <button 
                   onClick={proceedToPayment}
-                  className={`w-full py-4 font-black text-lg tracking-[1px] transition-all ${
+                  className={`w-full py-3 font-black text-base md:text-lg md:py-4 tracking-[1px] transition-all ${
                     isAddressValid 
                       ? 'bg-white text-black active:bg-[#39ff14]' 
                       : 'bg-white/30 text-white/50 cursor-not-allowed'
@@ -430,7 +430,7 @@ export default function CartPage() {
               ) : null}
               <button 
                 onClick={closeCheckout}
-                className="w-full py-4 border border-white/40 text-white font-black text-lg tracking-[1px] hover:bg-white hover:text-black transition-all"
+                className="w-full py-3 border border-white/40 text-white font-black text-base md:py-4 md:text-lg tracking-[1px] hover:bg-white hover:text-black transition-all"
               >
                 CANCEL
               </button>
