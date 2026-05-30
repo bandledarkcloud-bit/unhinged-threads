@@ -60,16 +60,17 @@ export default async function ProductPage({ params }: Props) {
       <Header />
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
-        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-center">
-          {/* Left column: Images + Size + Cart */}
+        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-start">
+          {/* Left column: Image only on desktop, Image + Size/Cart on mobile */}
           <div>
             <ProductImageGallery slug={slug} title={product.title} />
-            <div className="mt-6">
+            {/* Size + Cart (mobile only) */}
+            <div className="mt-6 lg:hidden">
               <ProductClient product={product} />
             </div>
           </div>
 
-          {/* Right column: Text only */}
+          {/* Right column: Text + Size/Cart on desktop */}
           <div className="flex flex-col pt-2">
             <div>
               <div className="text-[#ff0088] text-xs tracking-[4px] mb-2">{product.flavor}</div>
@@ -88,6 +89,11 @@ export default async function ProductPage({ params }: Props) {
                   <li key={i}>{bullet.icon} {bullet.text}</li>
                 ))}
               </ul>
+            </div>
+
+            {/* Size + Cart (desktop only) */}
+            <div className="hidden lg:block mt-6">
+              <ProductClient product={product} />
             </div>
           </div>
         </div>
