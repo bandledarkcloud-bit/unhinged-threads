@@ -35,11 +35,11 @@ export const products: Product[] = [
     metaTitle: "Certified Cougar Bait T-Shirt | Unhinged Threads",
     metaDescription: "Certified Cougar Bait. For men who prefer experience over innocence.",
     printfulVariants: {
-      S: 32088638211,
-      M: 32392530080,
-      L: 32088638209,
-      XL: 32088638207,
-      "2XL": 32392530078,
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      "2XL": 4015,
     },
   },
   {
@@ -84,11 +84,11 @@ export const products: Product[] = [
     metaDescription: "Good Girl. She wants to hear it even when she's not.",
     printfulVariants: {
       // TODO: Replace with real Printful variant IDs from dashboard
-      S: 0,
-      M: 0,
-      L: 0,
-      XL: 0,
-      "2XL": 0,
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      "2XL": 4015,
     },
   },
   {
@@ -130,11 +130,11 @@ printfulVariants: {
     metaDescription: "I am not responsible for what my face does when you talk.",
     printfulVariants: {
       // TODO: Replace with real Printful variant IDs from dashboard
-      S: 0,
-      M: 0,
-      L: 0,
-      XL: 0,
-      "2XL": 0,
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      2XL: 4015,
     },
   },
-];
+]; 
