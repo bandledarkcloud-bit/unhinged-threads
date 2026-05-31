@@ -77,7 +77,7 @@ export default function RootLayout({
         {children}
         <Footer />
 
-        {/* Google Analytics */}
+        {/* Google Analytics - Excluding localhost + home IP */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HZJG2GFXW6"
           strategy="afterInteractive"
@@ -87,7 +87,23 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-HZJG2GFXW6');
+
+            const hostname = window.location.hostname;
+            const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+            
+            // Your home IP range
+            const isHomeIP = /^74\\.244\\.21\\./.test('74.244.21.19');
+
+            if (isLocalhost || isHomeIP) {
+              gtag('config', 'G-HZJG2GFXW6', { 
+                'traffic_type': 'internal',
+                'debug_mode': true 
+              });
+              console.log('🚫 GA Tracking DISABLED (Localhost or Home IP)');
+            } else {
+              gtag('config', 'G-HZJG2GFXW6');
+              console.log('✅ GA Tracking ENABLED');
+            }
           `}
         </Script>
       </body>

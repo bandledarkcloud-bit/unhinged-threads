@@ -1,11 +1,14 @@
 'use client';
 export const dynamic = 'force-dynamic';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { getCart, updateCartItemQuantity, removeFromCart, clearCart, CartItem } from '@/lib/cart';
 import Header from '@/components/Header';
 import { buildPrintfulOrderPayload, PrintfulRecipient, createPrintfulOrder, ENABLE_REAL_ORDERS } from '@/lib/printful';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { products } from '@/lib/products';
+import { getShippingRates } from '@/app/actions/printful';
+import { useState, useEffect, useRef } from 'react';
+import debounce from 'lodash/debounce';
 
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -27,6 +30,84 @@ export default function CartPage() {
     email: '',
   });
 
+    // Shipping state
+  const [shippingOptions, setShippingOptions] = useState<any[]>([]);
+  const [shippingLoading, setShippingLoading] = useState(false);
+  const [shippingError, setShippingError] = useState<string | null>(null);
+  const [selectedShipping, setSelectedShipping] = useState<any>(null);
+
+  const isAddressValid = 
+    recipient.name && 
+    recipient.address1 && 
+    recipient.city && 
+    recipient.state_code && 
+    recipient.zip && 
+    recipient.email;
+
+  // Simple debounce (no lodash needed)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const fetchShippingRates = async () => {
+    if (!isAddressValid || cart.length === 0) return;
+
+    setShippingLoading(true);
+    setShippingError(null);
+
+    const items = cart.map((item: any) => ({
+      variant_id: (() => {
+        const p = products.find((prod: any) => prod.slug === item.slug);
+        return p?.printfulVariants?.[item.size] || 0;
+      })(),
+      quantity: item.quantity,
+      retail_price: item.price.toString(),
+    }));
+
+    console.log('=== FULL PAYLOAD TO PRINTFUL ===');
+    console.log('Recipient:', JSON.stringify(recipient, null, 2));
+    console.log('Items:', JSON.stringify(items, null, 2));
+    console.log('================================');
+
+    try {
+      const result = await getShippingRates(recipient, items, 18250831);
+      console.log('Printful Response:', result);
+
+      if (result.success && result.rates) {
+        setShippingOptions(result.rates);
+      } else {
+        console.error('🚨 PRINTFUL REJECTED WITH RESULT:', JSON.stringify(result, null, 2));
+        setShippingError(result.error?.message || 'Could not calculate shipping rates.');
+      }
+    } catch (error: any) {
+      console.error('🚨 FULL PRINTFUL ERROR:', error);
+      setShippingError('Printful API error - check console.');
+    } finally {
+      setShippingLoading(false);
+    }
+  };
+
+  const debouncedFetch = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(fetchShippingRates, 800);
+  };
+
+  // Auto-fetch with debounce
+  useEffect(() => {
+    console.log('Address validity check:', { isAddressValid, cartLength: cart.length });
+
+    if (isAddressValid && cart.length > 0) {
+      console.log('✅ Triggering debounced shipping rates...');
+      debouncedFetch();
+    }
+  }, [isAddressValid, cart.length, recipient]);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
   const fetchCart = async () => {
     setLoading(true);
     const items = await getCart();
@@ -61,12 +142,6 @@ export default function CartPage() {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const total = subtotal;
 
-  const isAddressValid = 
-    recipient.name && 
-    recipient.address1 && 
-    recipient.city && 
-    recipient.zip && 
-    recipient.email;   // email now required
 
   const proceedToPayment = () => {
     if (!isAddressValid) {
@@ -341,7 +416,7 @@ export default function CartPage() {
                 </div>
               </div>
             ) : (
-              // Payment Confirmation Step with FREE SHIPPING + real PayPal
+              // Payment Confirmation Step
               <div className="mb-8">
                 <div className="text-lg mb-4">Review your order before paying.</div>
                 
@@ -354,18 +429,68 @@ export default function CartPage() {
                   ))}
                 </div>
 
+                {/* Shipping Options */}
+                <div className="pt-4 border-t border-white/10 mb-6">
+                  <div className="text-sm tracking-[2px] text-white/60 mb-3">SHIPPING</div>
+                  
+                  {shippingLoading && <div className="text-white/60 text-sm">Calculating shipping rates...</div>}
+                  
+                  {shippingError && <div className="text-[#ff0088] text-sm mb-2">{shippingError}</div>}
+
+                  {shippingOptions.length > 0 && (
+                    <div className="space-y-2">
+                      {shippingOptions
+                        .filter(rate => !rate.name?.toLowerCase().includes('co2') && 
+                                       !rate.name?.toLowerCase().includes('offsetting'))
+                        .map((rate, index) => (
+                          <label 
+                            key={index}
+                            className={`flex justify-between items-center p-3 border rounded cursor-pointer transition-all ${
+                              selectedShipping?.id === rate.id 
+                                ? 'border-[#39ff14] bg-[#39ff14]/10' 
+                                : 'border-white/20 hover:border-white/40'
+                            }`}
+                          >
+                            <div>
+                              <div className="font-medium">{rate.name}</div>
+                              <div className="text-xs text-white/60">{rate.service}</div>
+                            </div>
+                            <div className="font-mono text-right">
+                              ${parseFloat(rate.rate).toFixed(2)}
+                            </div>
+                            <input 
+                              type="radio" 
+                              name="shipping" 
+                              checked={selectedShipping?.id === rate.id}
+                              onChange={() => setSelectedShipping(rate)}
+                              className="ml-4"
+                            />
+                          </label>
+                        ))}
+                    </div>
+                  )}
+                </div>
+
                 <div className="pt-4 border-t border-white/10 space-y-1 mb-8">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>
                     <span>${subtotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between text-sm text-white/60">
+                  <div className="flex justify-between text-sm">
                     <span>Shipping</span>
-                    <span>Calculated at checkout</span>
+                    <span className="font-mono">
+                      {selectedShipping 
+                        ? `$${parseFloat(selectedShipping.rate).toFixed(2)}` 
+                        : 'Select shipping option'}
+                    </span>
                   </div>
                   <div className="flex justify-between font-black text-xl pt-2 border-t border-white/10">
                     <span>TOTAL</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>
+                      ${selectedShipping 
+                        ? (subtotal + parseFloat(selectedShipping.rate)).toFixed(2) 
+                        : subtotal.toFixed(2)}
+                    </span>
                   </div>
                 </div>
 
@@ -376,11 +501,15 @@ export default function CartPage() {
                   <PayPalButtons
                     style={{ layout: "vertical" }}
                     createOrder={(data, actions) => {
+                      const finalTotal = selectedShipping 
+                        ? (subtotal + parseFloat(selectedShipping.rate)).toFixed(2)
+                        : subtotal.toFixed(2);
+
                       return actions.order.create({
                         intent: "CAPTURE",
                         purchase_units: [{
                           amount: {
-                            value: total.toFixed(2),
+                            value: finalTotal,
                             currency_code: "USD"
                           }
                         }]
@@ -411,7 +540,6 @@ export default function CartPage() {
                     }}
                   />
                 </PayPalScriptProvider>
-
               </div>
             )}
 

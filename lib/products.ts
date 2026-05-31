@@ -58,11 +58,12 @@ export const products: Product[] = [
     metaTitle: "No Fat Chicks T-Shirt | Unhinged Threads",
     metaDescription: "No Fat Chicks. Brutal honesty on a shirt.",
     printfulVariants: {
-      S: 32088638211,
-      M: 32392530080,
-      L: 32088638209,
-      XL: 32088638207,
-      "2XL": 32392530078,
+      // TODO: Replace with real Printful variant IDs from dashboard
+      S: 0,
+      M: 0,
+      L: 0,
+      XL: 0,
+      "2XL": 0,
     },
   },
   {
@@ -82,11 +83,12 @@ export const products: Product[] = [
     metaTitle: "Good Girl T-Shirt | Unhinged Threads",
     metaDescription: "Good Girl. She wants to hear it even when she's not.",
     printfulVariants: {
-      S: 32088638211,
-      M: 32392530080,
-      L: 32088638209,
-      XL: 32088638207,
-      "2XL": 32392530078,
+      // TODO: Replace with real Printful variant IDs from dashboard
+      S: 0,
+      M: 0,
+      L: 0,
+      XL: 0,
+      "2XL": 0,
     },
   },
   {
@@ -103,14 +105,14 @@ export const products: Product[] = [
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "White Boy Summer T-Shirt | Unhinged Threads",
-    metaDescription: "White Boy Summer. Certified.",
-    printfulVariants: {
-      S: 32088638211,
-      M: 32392530080,
-      L: 32088638209,
-      XL: 32088638207,
-      "2XL": 32392530078,
-    },
+       metaDescription: "White Boy Summer. Certified.",
+printfulVariants: {
+  "S":   4011,
+  "M":   4012,
+  "L":   4013,
+  "XL":  4014,
+  "2XL": 4015,
+},
   },
   {
     slug: "not-responsible-face",
@@ -127,11 +129,12 @@ export const products: Product[] = [
     metaTitle: "Not Responsible For My Face T-Shirt | Unhinged Threads",
     metaDescription: "I am not responsible for what my face does when you talk.",
     printfulVariants: {
-      S: 32197048323,
-      M: 32505717324,
-      L: 32505717322,
-      XL: 32197048321,
-      "2XL": 32505717320,
+      // TODO: Replace with real Printful variant IDs from dashboard
+      S: 0,
+      M: 0,
+      L: 0,
+      XL: 0,
+      "2XL": 0,
     },
   },
 ];
