@@ -34,7 +34,30 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Certified Cougar Bait T-Shirt | Unhinged Threads",
     metaDescription: "Certified Cougar Bait. For men who prefer experience over innocence.",
-        printfulVariants: {
+    printfulVariants: {
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      "2XL": 4015,
+    },
+  },
+  {
+    slug: "no-fat-chicks",
+    title: "NO FAT CHICKS",
+    price: 29.99,
+    flavor: "MENTAL HEALTH",
+    bullets: [
+      { icon: "🚫", text: "No Fat Chicks — Brutal. Direct. Zero filter." },
+      { icon: "😂", text: "The shirt that ends friendships and starts conversations" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "No Fat Chicks T-Shirt | Unhinged Threads",
+    metaDescription: "No Fat Chicks. Brutal honesty on a shirt.",
+    printfulVariants: {
       S: 4011,
       M: 4012,
       L: 4013,
@@ -58,7 +81,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Good Girl T-Shirt | Unhinged Threads",
     metaDescription: "Good Girl. She wants to hear it even when she's not.",
-        printfulVariants: {
+    printfulVariants: {
       S: 4011,
       M: 4012,
       L: 4013,
@@ -80,7 +103,7 @@ export const products: Product[] = [
     ],
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "White Boy Summer T-Shirt | Unhinged Threads",
-       metaDescription: "White Boy Summer. Certified.",
+    metaDescription: "White Boy Summer. Certified.",
     printfulVariants: {
       S: 4011,
       M: 4012,
@@ -89,4 +112,26 @@ export const products: Product[] = [
       "2XL": 4015,
     },
   },
-]; 
+  {
+    slug: "not-responsible-face",
+    title: "NOT RESPONSIBLE FOR MY FACE",
+    price: 29.99,
+    flavor: "RELATIONSHIP CHAOS",
+    bullets: [
+      { icon: "😶", text: "I am not responsible for what my face does when you talk" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "Not Responsible For My Face T-Shirt | Unhinged Threads",
+    metaDescription: "I am not responsible for what my face does when you talk.",
+    printfulVariants: {
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      "2XL": 4015,
+    },
+  },
+];
