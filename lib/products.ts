@@ -59,11 +59,11 @@ export const products: Product[] = [
     metaDescription: "No Fat Chicks. Brutal honesty on a shirt.",
     printfulVariants: {
       // TODO: Replace with real Printful variant IDs from dashboard
-      S: 0,
-      M: 0,
-      L: 0,
-      XL: 0,
-      "2XL": 0,
+      S: 4010,
+      M: 4011,
+      L: 4012,
+      XL: 4013,
+      "2XL": 4014,
     },
   },
   {
