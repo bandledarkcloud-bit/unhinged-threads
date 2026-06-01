@@ -10,7 +10,7 @@ export type Product = {
   sizes: string[];
   metaTitle?: string;
   metaDescription?: string;
-  printfulVariants?: Record<string, number>;
+  printfulVariants?: Record<string, string>;
   weekly?: boolean;
 };
 
