@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 const weeklyProduct = {
-  title: "GOOD GIRL",
+  title: "FIREWORKS DIRECTOR",
   price: 29.99,
-  tag: "ADULT HUMOR",
-  desc: "She wants to hear it even when she's not.",
+  tag: "4TH OF JULY",
+  desc: "I run, you run.",
 };
 
 export default function UnhingedHome() {
-  const slug = "good-girl";
+  const slug = "fireworks-director";
 
   const flavorRows = [
     { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },

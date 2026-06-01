@@ -139,6 +139,7 @@ export const products: Product[] = [
     title: "FIREWORKS DIRECTOR",
     price: 29.99,
     flavor: "CHAOTIC PATRIOTISM",
+    weekly: true,
     bullets: [
       { icon: "🎆", text: "Fireworks Director — I run, you run" },
       { icon: "🇺🇸", text: "Official 4th of July chaos uniform" },
