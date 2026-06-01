@@ -116,7 +116,7 @@ export default function UnhingedHome() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {products.map((product) => (
+            {products.filter(p => p.slug !== "fireworks-director").map((product) => (
               <Link 
                 key={product.slug} 
                 href={`/shop/${product.slug}`}
