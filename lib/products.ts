@@ -133,7 +133,7 @@ export const products: Product[] = [
       XL: 4014,
       "2XL": 4015,
     },
-  },,
+  },
   {
     slug: "fireworks-director",
     title: "FIREWORKS DIRECTOR",
@@ -150,11 +150,11 @@ export const products: Product[] = [
     metaTitle: "Fireworks Director T-Shirt | Unhinged Threads",
     metaDescription: "Fireworks Director. I run, you run. 4th of July chaos.",
     printfulVariants: {
-      S: "6e1d26142c5c71",
-      M: "6e1d26142c5d19",
-      L: "6e1d26142c5d95",
-      XL: "6e1d26142c5e02",
-      "2XL": "6e1d26142c5e01",
+      S: 4011,
+      M: 4012,
+      L: 4013,
+      XL: 4014,
+      "2XL": 4015,
     },
   },
 ];
