@@ -43,14 +43,23 @@ export default function UnhingedHome() {
       <Header />
 
       {/* HERO */}
-      <section className="hero pt-6 pb-8">
-        <div className="max-w-7xl mx-auto px-6">
+      <section 
+        className="hero relative h-[620px] flex items-center justify-center bg-black"
+        style={{
+          backgroundImage: "url(/Hero-Desktop.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
           <div className="flex flex-row items-center justify-between gap-8">
-            <div className="flex-shrink-0">
+            {/* Logo - far left */}
+            <div className="flex-shrink-0 -ml-12">
               <img src="/header.png" alt="Unhinged Threads - Respect The Glitch" className="max-w-[420px] w-full" />
             </div>
 
-            <div className="flex flex-col items-center max-w-xs text-center">
+            {/* Centered text */}
+            <div className="flex flex-col items-center text-center flex-1">
               <div className="mb-4">
                 <p className="text-5xl font-black tracking-[-1.5px] text-[#39ff14] leading-tight">
                   Unfiltered. Unapologetic. Unhinged.
@@ -58,47 +67,15 @@ export default function UnhingedHome() {
                 <p className="glitch-text text-sm mt-2 whitespace-nowrap" style={{fontSize: "2rem"}}>Respect The Glitch ⚡️</p>
               </div>
 
-              <div className="flex flex-col gap-2 w-full">
-                <a href="/shop" className="px-6 py-2.5 bg-white text-black border-2 border-[#ff0088] text-sm font-black tracking-[1px] active:bg-[#ff0088] active:text-white transition-all text-center">
+              <div className="flex flex-col gap-2 w-full max-w-[200px]">
+                <a href="/shop" className="px-6 py-2.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[1px] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all text-center">
                   SHOP THE CHAOS
                 </a>
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-[260px]">
-              <div className="mb-2">
-                <div className="text-[#ff0088] text-[10px] font-black tracking-[3px] mb-0.5">THIS WEEK&apos;S DEGENERACY</div>
-                <h2 className="text-[#9b00ff] text-5xl font-black tracking-[-3px] leading-none">FRESH CHAOS</h2>
-              </div>
-              <div className="product-card border border-white/10 p-1 bg-zinc-950 hover:border-[#39ff14] transition-all">
-                <div className="aspect-square bg-black border border-white/10 overflow-hidden">
-                  <Link href={`/shop/${slug}`}>
-                    <img 
-                      src={`/products/${slug}/roxy.png`} 
-                      alt="Good Girl Shirt"
-                      className="w-full h-full object-cover"
-                    />
-                  </Link>
-                </div>
-                <div className="p-4">
-                  <Link href={`/shop/${slug}`}>
-                    <h3 className="font-black text-xl tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-1">
-                      {weeklyProduct.title}
-                    </h3>
-                  </Link>
-                  <div className="text-sm text-white/70 mb-3">{weeklyProduct.desc}</div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-3xl font-black">${weeklyProduct.price}</div>
-                    <Link 
-                      href={`/shop/${slug}`}
-                      className="px-5 py-1.5 bg-white text-black text-xs font-black active:bg-[#ff0088] active:text-white transition-all"
-                    >
-                      ADD TO CART
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Right spacer for balance */}
+            <div className="flex-shrink-0 w-[340px]"></div>
           </div>
         </div>
       </section>
@@ -113,42 +90,34 @@ export default function UnhingedHome() {
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {products.map((product) => (
-              <div 
+              <Link 
                 key={product.slug} 
-                className="border border-white/10 bg-black flex flex-col"
+                href={`/shop/${product.slug}`}
+                className="border border-white/10 bg-black flex flex-col hover:border-[#39ff14] transition-all"
               >
-                <Link href={`/shop/${product.slug}`} className="block">
-                  <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
-                    <img 
-                      src={`/products/${product.slug}/roxy.png`} 
-                      alt={product.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </Link>
+                <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
+                  <img 
+                    src={`/products/${product.slug}/roxy.png`} 
+                    alt={product.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 
                 <div className="p-4 flex flex-col flex-1">
-                  <Link href={`/shop/${product.slug}`}>
-                    <h3 className="font-black text-lg tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-1">
-                      {product.title}
-                    </h3>
-                  </Link>
+                  <h3 className="font-black text-lg tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-1">
+                    {product.title}
+                  </h3>
                   
-                  <div className="mt-auto pt-3 flex items-center justify-between">
+                  <div className="mt-auto pt-3">
                     <div className="text-2xl font-black">${product.price}</div>
-                    <Link 
-                      href={`/shop/${product.slug}`}
-                      className="px-2 py-0.5 bg-white text-black text-[8px] font-black inline-flex items-center justify-center text-center active:bg-[#ff0088] active:text-white transition-all md:px-2.5 md:text-[9px]"
-                    >
-                      ADD TO CART
-                    </Link>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
+
       {/* WEEKLY DROP - Larger featured section */}
       <section className="py-16 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6">
@@ -186,6 +155,11 @@ export default function UnhingedHome() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-8">
+            <a href="/shop" className="inline-block px-8 py-3 bg-black text-white text-sm font-black tracking-[1px] border-2 border-[#ff0088] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all">
+              SHOP ALL CHAOS
+            </a>
           </div>
         </div>
       </section>

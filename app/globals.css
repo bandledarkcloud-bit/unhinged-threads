@@ -57,6 +57,7 @@ body {
     0 0 20px #ff0088,
     0 0 40px #39ff14;
   animation: glitch 0.8s infinite linear alternate;
+  white-space: nowrap;
 }
 
 @keyframes glitch {
