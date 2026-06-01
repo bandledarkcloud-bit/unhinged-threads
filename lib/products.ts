@@ -133,5 +133,28 @@ export const products: Product[] = [
       XL: 4014,
       "2XL": 4015,
     },
+  },,
+  {
+    slug: "fireworks-director",
+    title: "FIREWORKS DIRECTOR",
+    price: 29.99,
+    flavor: "CHAOTIC PATRIOTISM",
+    bullets: [
+      { icon: "🎆", text: "Fireworks Director — I run, you run" },
+      { icon: "🇺🇸", text: "Official 4th of July chaos uniform" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "Fireworks Director T-Shirt | Unhinged Threads",
+    metaDescription: "Fireworks Director. I run, you run. 4th of July chaos.",
+    printfulVariants: {
+      S: "6e1d26142c5c71",
+      M: "6e1d26142c5d19",
+      L: "6e1d26142c5d95",
+      XL: "6e1d26142c5e02",
+      "2XL": "6e1d26142c5e01",
+    },
   },
 ];
