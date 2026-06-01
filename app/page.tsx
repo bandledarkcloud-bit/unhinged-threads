@@ -42,9 +42,36 @@ export default function UnhingedHome() {
     <div className="min-h-screen bg-black text-white font-mono font-bebas overflow-x-hidden">
       <Header />
 
-      {/* HERO */}
+      {/* HERO - Mobile (no logo) */}
       <section 
-        className="hero relative h-[620px] flex items-center justify-center bg-black"
+        className="hero relative h-[620px] flex items-center justify-center bg-black md:hidden"
+        style={{
+          backgroundImage: "url(/Hero-mobile.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4">
+              <p className="text-5xl font-black tracking-[-1.5px] text-[#39ff14] leading-tight">
+                Unfiltered. Unapologetic. Unhinged.
+              </p>
+              <p className="glitch-text text-sm mt-2 whitespace-nowrap" style={{fontSize: "2rem"}}>Respect The Glitch ⚡️</p>
+            </div>
+
+            <div className="flex flex-col gap-2 w-full max-w-[200px]">
+              <a href="/shop" className="px-6 py-2.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[1px] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all text-center">
+                SHOP THE CHAOS
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Desktop Hero */}
+      <section 
+        className="hero relative h-[620px] hidden md:flex items-center justify-center bg-black"
         style={{
           backgroundImage: "url(/Hero-Desktop.png)",
           backgroundSize: "cover",
