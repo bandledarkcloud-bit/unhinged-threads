@@ -44,7 +44,7 @@ export default function ThankYouPage() {
           </Link>
         </div>
 
-        <p className="mt-12 text-xs text-white/40 tracking-[3px]">
+        <p className="mt-12 text-xs text-[#ff0088] tracking-[3px]">
           RESPECT THE GLITCH ⚡️
         </p>
       </div>
