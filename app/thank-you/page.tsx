@@ -23,7 +23,7 @@ export default function ThankYouPage() {
         <div className="max-w-md mx-auto border border-white/10 bg-zinc-950 p-6 mb-10 text-left">
           <div className="text-sm tracking-[2px] text-white/50 mb-3">WHAT HAPPENS NEXT</div>
           <ul className="space-y-2 text-white/80 text-sm">
-            <li>• Printful will send you a confirmation email</li>
+            <li>• You&apos;ll receive a confirmation email</li>
             <li>• You&apos;ll get tracking when it ships</li>
             <li>• Expect it in 5–12 business days</li>
           </ul>
