@@ -3,7 +3,8 @@ export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, updateCartItemQuantity, removeFromCart, CartItem } from '@/lib/cart';
-import { getShippingRates } from '@/app/actions/printful';
+import { getShippingRates, createPrintfulOrderAction } from '@/app/actions/printful';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { products } from '@/lib/products';
 import Header from '@/components/Header';
 
@@ -238,10 +239,69 @@ export default function CartPage() {
             )}
 
             {selectedShipping && (
-              <button className="w-full py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px]">
-                PAY WITH PAYPAL — ${(subtotal + parseFloat(selectedShipping.rate)).toFixed(2)}
-              </button>
+              <PayPalScriptProvider options={{ 
+                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
+                currency: "USD"
+              }}>
+                <div className="mt-4">
+                  <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [{
+                          amount: {
+                            value: (subtotal + parseFloat(selectedShipping.rate)).toFixed(2),
+                            currency_code: "USD"
+                          },
+                          description: "Unhinged Threads Order"
+                        }]
+                      });
+                    }}
+                    onApprove={async (data, actions) => {
+                      const details = await actions.order?.capture();
+                      
+                      const confirmed = window.confirm(
+                        `Payment successful! Create real Printful order now?\n\n` +
+                        `This will charge your Printful account. Only proceed if you're ready.`
+                      );
+
+                      if (!confirmed) {
+                        alert("Order creation cancelled. Payment was still processed.");
+                        return;
+                      }
+
+                      const payload = {
+                        recipient: {
+                          name: address.name,
+                          address1: address.address1,
+                          city: address.city,
+                          state_code: address.state,
+                          country_code: "US",
+                          zip: address.zip,
+                          email: address.email
+                        },
+                        items: cart.map(item => ({
+                          slug: item.slug,
+                          size: item.size,
+                          quantity: item.quantity,
+                          price: item.price
+                        }))
+                      };
+
+                      const result = await createPrintfulOrderAction(payload);
+                      
+                      if (result.success) {
+                        alert("Order created successfully in Printful! Check dashboard.");
+                        setShowCheckout(false);
+                      } else {
+                        alert("Failed to create Printful order: " + (result.error || result.message));
+                      }
+                    }}
+                  />
+                </div>
+              </PayPalScriptProvider>
             )}
+
           </div>
         </div>
       )}
