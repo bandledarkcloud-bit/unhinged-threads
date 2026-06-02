@@ -200,8 +200,8 @@ export default function CartPage() {
 
 
       {showCheckout && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 px-6">
-          <div className="bg-zinc-950 border border-white/20 p-8 w-full max-w-lg">
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-zinc-950 border border-white/20 max-w-lg w-full p-8 my-8 max-h-[90vh] overflow-y-auto rounded-lg">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-black tracking-[-1px]">CHECKOUT</h2>
               <button onClick={() => setShowCheckout(false)} className="text-white/60 hover:text-white">✕</button>
