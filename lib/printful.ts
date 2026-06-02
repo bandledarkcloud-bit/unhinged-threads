@@ -81,7 +81,7 @@ export function buildPrintfulOrderPayload(
     }
 
     return {
-      variant_id: variantId,
+      sync_variant_id: variantId,
       quantity: item.quantity,
       retail_price: item.price.toString(),
     };

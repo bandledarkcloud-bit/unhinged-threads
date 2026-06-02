@@ -10,7 +10,7 @@ export type Product = {
   sizes: string[];
   metaTitle?: string;
   metaDescription?: string;
-  printfulVariants?: Record<string, string>;
+  printfulVariants?: Record<string, string | number>;
   weekly?: boolean;
 };
 
@@ -35,11 +35,11 @@ export const products: Product[] = [
     metaTitle: "Certified Cougar Bait T-Shirt | Unhinged Threads",
     metaDescription: "Certified Cougar Bait. For men who prefer experience over innocence.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5334281393,
+      M: 5334281394,
+      L: 5334281395,
+      XL: 5334281396,
+      "2XL": 5334281397,
     },
   },
   {
@@ -58,11 +58,11 @@ export const products: Product[] = [
     metaTitle: "No Fat Chicks T-Shirt | Unhinged Threads",
     metaDescription: "No Fat Chicks. Brutal honesty on a shirt.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5334280273,
+      M: 5334280275,
+      L: 5334280277,
+      XL: 5334280279,
+      "2XL": 5334280281,
     },
   },
   {
@@ -82,11 +82,11 @@ export const products: Product[] = [
     metaTitle: "Good Girl T-Shirt | Unhinged Threads",
     metaDescription: "Good Girl. She wants to hear it even when she's not.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5332833314,
+      M: 5332833315,
+      L: 5332833316,
+      XL: 5332833317,
+      "2XL": 5332833318,
     },
   },
   {
@@ -105,11 +105,11 @@ export const products: Product[] = [
     metaTitle: "White Boy Summer T-Shirt | Unhinged Threads",
     metaDescription: "White Boy Summer. Certified.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5330249069,
+      M: 5330249070,
+      L: 5330249071,
+      XL: 5330249072,
+      "2XL": 5330249073,
     },
   },
   {
@@ -127,11 +127,11 @@ export const products: Product[] = [
     metaTitle: "Not Responsible For My Face T-Shirt | Unhinged Threads",
     metaDescription: "I am not responsible for what my face does when you talk.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5334281381,
+      M: 5334281382,
+      L: 5334281383,
+      XL: 5334281384,
+      "2XL": 5334281386,
     },
   },
   {
@@ -151,11 +151,11 @@ export const products: Product[] = [
     metaTitle: "Fireworks Director T-Shirt | Unhinged Threads",
     metaDescription: "Fireworks Director. I run, you run. 4th of July chaos.",
     printfulVariants: {
-      S: "5e19170e220733",
-      M: "5e19170e220f09",
-      L: "5e19170e220c14",
-      XL: "5e19170e220e59",
-      "2XL": "5e19170e220ea2",
+      S: 5334289252,
+      M: 5334289253,
+      L: 5334289254,
+      XL: 5334289255,
+      "2XL": 5334289256,
     },
   },
 ];
