@@ -7,26 +7,7 @@ const UNHINGED_THREADS_STORE_ID = '17944434';
 // Safety flag - set to true only when ready to place real orders
 export const ENABLE_REAL_ORDERS = true;
 
-export function getPrintfulHeaders(storeId?: string) {
-  const apiKey = process.env.PRINTFUL_API_KEY;
-
-  if (!apiKey) {
-    throw new Error('PRINTFUL_API_KEY is not set in environment variables');
-  }
-
-  const headers: Record<string, string> = {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json',
-  };
-
-  if (storeId) {
-    headers['X-PF-Store-Id'] = storeId;
-  } else if (UNHINGED_THREADS_STORE_ID) {
-    headers['X-PF-Store-Id'] = UNHINGED_THREADS_STORE_ID;
-  }
-
-  return headers;
-}
+cat /tmp/new_headers.txt
 
 export async function printfulFetch(endpoint: string, options: RequestInit = {}, storeId?: string) {
   const headers = getPrintfulHeaders(storeId);
