@@ -68,6 +68,11 @@ export async function getShippingRates(recipient: Recipient, items: Item[], stor
 export async function createPrintfulOrderAction(payload: any) {
   "use server";
 
+  console.log("=== SERVER ACTION DEBUG ===");
+  console.log("Cart items received:", payload);
+  console.log("===========================");
+  "use server";
+
   const apiKey = process.env.PRINTFUL_API_KEY;
   if (!apiKey) {
     return { success: false, error: "PRINTFUL_API_KEY not configured" };
