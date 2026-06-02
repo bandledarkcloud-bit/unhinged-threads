@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getCart, updateCartItemQuantity, removeFromCart, CartItem } from '@/lib/cart';
+import { getCart, updateCartItemQuantity, removeFromCart, clearCart, CartItem } from '@/lib/cart';
 import { getShippingRates, createPrintfulOrderAction } from '@/app/actions/printful';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { products } from '@/lib/products';
@@ -299,7 +299,9 @@ export default function CartPage() {
                           console.log('%c[Printful] REAL ORDERS DISABLED — Would have sent this payload:', 'color:#ff0088', payload);
                         }
 
-                        window.location.href = "/thank-you";
+                        // Success - clear cart and redirect to thank you
+                        await clearCart();
+                        window.location.href = '/thank-you';
 
                       } catch (err: any) {
                         console.error('[Checkout] Error during order creation:', err);
