@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getCart, updateQuantity, removeFromCart, CartItem } from '@/lib/cart';
+import { getCart, updateCartItemQuantity, removeFromCart, CartItem } from '@/lib/cart';
 import Header from '@/components/Header';
 
 export default function CartPage() {
@@ -25,7 +25,7 @@ export default function CartPage() {
 
   const handleUpdateQuantity = async (id: string, newQuantity: number) => {
     if (newQuantity < 1) return;
-    await updateQuantity(id, newQuantity);
+    await updateCartItemQuantity(id, newQuantity);
     await fetchCart();
   };
 
