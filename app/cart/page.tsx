@@ -44,11 +44,11 @@ export default function CartPage() {
         const items = cart.map(item => {
       const product = products.find(p => p.slug === item.slug);
       const sizeKey = item.size || "L";
-      let variantId = product?.printfulVariants?.[sizeKey];
+      let variantId = product?.catalogVariantIds?.[sizeKey];
 
-      if (!variantId && product?.printfulVariants) {
-        const keys = Object.keys(product.printfulVariants);
-        variantId = product.printfulVariants[keys[0]];
+      if (!variantId && product?.catalogVariantIds) {
+        const keys = Object.keys(product.catalogVariantIds);
+        variantId = product.catalogVariantIds[keys[0]];
       }
 
       if (!variantId) {
