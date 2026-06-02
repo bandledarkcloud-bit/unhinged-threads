@@ -296,7 +296,7 @@ export default function CartPage() {
                         alert("Order created successfully in Printful! Check dashboard.");
                         setShowCheckout(false);
                       } else {
-                        alert("Failed to create Printful order: " + (result.error || result.message));
+                        alert("Failed to create Printful order: " + (result.error));
                       }
                     }}
                   />
