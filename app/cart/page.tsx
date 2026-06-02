@@ -262,45 +262,46 @@ export default function CartPage() {
                       });
                     }}
                     onApprove={async (data, actions) => {
-                      if (!actions.order) return;
-                      const details = await actions.order.capture();
-                      
-                      const confirmed = window.confirm(
-                        `Payment successful! Create real Printful order now?\n\n` +
-                        `This will charge your Printful account. Only proceed if you're ready.`
-                      );
+                      try {
+                        const details = await actions.order?.capture();
+                        console.log('%c[PayPal] Payment successful:', 'color:#39ff14', details);
 
-                      if (!confirmed) {
-                        alert("Order creation cancelled. Payment was still processed.");
-                        return;
-                      }
+                        const payload = {
+                          recipient: {
+                            name: address.name,
+                            address1: address.address1,
+                            city: address.city,
+                            state_code: address.state,
+                            country_code: "US",
+                            zip: address.zip,
+                            email: address.email
+                          },
+                          items: cart.map(item => ({
+                            slug: item.slug,
+                            size: item.size,
+                            quantity: item.quantity,
+                            price: item.price
+                          }))
+                        };
 
-                      const payload = {
-                        recipient: {
-                          name: address.name,
-                          address1: address.address1,
-                          city: address.city,
-                          state_code: address.state,
-                          country_code: "US",
-                          zip: address.zip,
-                          email: address.email
-                        },
-                        items: cart.map(item => ({
-                          slug: item.slug,
-                          size: item.size,
-                          quantity: item.quantity,
-                          price: item.price
-                        }))
-                      };
+                        if (true) { // ENABLE_REAL_ORDERS placeholder
+                          const result = await createPrintfulOrderAction(payload);
+                          console.log('%c[Printful] Order result:', 'color:#39ff14', result);
 
-                      const result = await createPrintfulOrderAction(payload);
-                      
-                      if (result.success) {
-                        alert("Order created successfully in Printful! Check dashboard.");
+                          if (!result.success) {
+                            console.error('[Printful] Order creation failed:', result.error);
+                            alert(`Order creation failed: ${JSON.stringify(result.error)}`);
+                            return;
+                          }
+                        } else {
+                          console.log('%c[Printful] REAL ORDERS DISABLED — Would have sent this payload:', 'color:#ff0088', payload);
+                        }
+
                         setShowCheckout(false);
-                      } else {
-                        const errorMsg = typeof result.error === "string" ? result.error : JSON.stringify(result.error);
-                      alert("Failed to create Printful order: " + errorMsg);
+
+                      } catch (err: any) {
+                        console.error('[Checkout] Error during order creation:', err);
+                        alert(`Order creation cancelled. Error: ${err?.message || JSON.stringify(err)}`);
                       }
                     }}
                   />
