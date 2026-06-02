@@ -71,7 +71,6 @@ export async function createPrintfulOrderAction(payload: any) {
   console.log("=== SERVER ACTION DEBUG ===");
   console.log("Cart items received:", payload);
   console.log("===========================");
-  "use server";
 
   const apiKey = process.env.PRINTFUL_API_KEY;
   if (!apiKey) {
