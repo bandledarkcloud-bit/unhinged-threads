@@ -65,39 +65,27 @@ export async function getShippingRates(recipient: Recipient, items: Item[], stor
     return { success: false, error: error.message || "Failed to fetch shipping rates" };
   }
 }
-export async function createPrintfulOrderAction(payload: any) {
-  "use server";
+"use server";
 
+import { products } from "@/lib/products";
+import { buildPrintfulOrderPayload } from "@/lib/printful";
+
+export async function createPrintfulOrderAction(payload: any) {
   console.log("=== SERVER ACTION DEBUG ===");
-  console.log("Cart items received:", payload);
+  console.log("Cart items received:", payload?.cart);
   console.log("===========================");
 
   const apiKey = process.env.PRINTFUL_API_KEY;
   if (!apiKey) {
-    return { success: false, error: "PRINTFUL_API_KEY not configured" };
+    throw new Error("PRINTFUL_API_KEY is not set");
   }
 
-  try {
-    const response = await fetch("https://api.printful.com/orders", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "X-PF-Store-Id": "18250831",
-      },
-      body: JSON.stringify(payload),
-    });
+  // Build the order payload using catalogVariantIds
+  const printfulPayload = buildPrintfulOrderPayload(payload.cart, payload.recipient);
 
-    const data = await response.json();
+  console.log("=== PRINTFUL PAYLOAD ===");
+  console.log(JSON.stringify(printfulPayload, null, 2));
+  console.log("========================");
 
-    if (!response.ok) {
-      console.error("[Printful] Order creation error:", data);
-      return { success: false, error: data.error || "Printful rejected order" };
-    }
-
-    return { success: true, result: data.result };
-  } catch (error: any) {
-    console.error("[Printful] Order creation exception:", error);
-    return { success: false, error: error.message || "Failed to create order" };
-  }
+  // ... rest of the function (create order, etc.)
 }
