@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 const weeklyProduct = {
-  title: "GOOD GIRL",
+  title: "FIREWORKS DIRECTOR",
   price: 29.99,
-  tag: "ADULT HUMOR",
-  desc: "She wants to hear it even when she's not.",
+  tag: "CHAOTIC PATRIOTISM",
+  desc: "I run, you run.",
 };
 
 export default function UnhingedHome() {
-  const slug = "good-girl";
+  const slug = "fireworks-director";
 
   const flavorRows = [
     { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },
@@ -42,41 +42,97 @@ export default function UnhingedHome() {
     <div className="min-h-screen bg-black text-white font-mono font-bebas overflow-x-hidden">
       <Header />
 
-      {/* HERO */}
+            {/* DESKTOP HERO (Hidden on mobile, flex on desktop) */}
       <section 
-        className="hero relative h-[620px] flex items-center justify-center bg-black"
+        className="hero relative h-[620px] hidden md:flex items-center bg-black overflow-hidden"
         style={{
           backgroundImage: "url(/Hero-Desktop.png)",
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <div className="flex flex-row items-center justify-between gap-8">
-            {/* Logo - far left */}
-            <div className="flex-shrink-0 -ml-12">
-              <img src="/header.png" alt="Unhinged Threads - Respect The Glitch" className="max-w-[420px] w-full" />
-            </div>
+        {/* 1. THE LOGO: Centered in left dead space and upscaled to max-w-[420px] */}
+        <div className="absolute left-[12%] top-1/2 -translate-y-1/2 z-20">
+          <img 
+            src="/header.png" 
+            alt="Unhinged Threads - Respect The Glitch" 
+            className="max-w-[420px] w-full object-contain" 
+          />
+        </div>
 
-            {/* Centered text */}
-            <div className="flex flex-col items-center text-center flex-1">
-              <div className="mb-4">
-                <p className="text-5xl font-black tracking-[-1.5px] text-[#39ff14] leading-tight">
-                  Unfiltered. Unapologetic. Unhinged.
-                </p>
-                <p className="glitch-text text-sm mt-2 whitespace-nowrap" style={{fontSize: "2rem"}}>Respect The Glitch ⚡️</p>
-              </div>
-
-              <div className="flex flex-col gap-2 w-full max-w-[200px]">
-                <a href="/shop" className="px-6 py-2.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[1px] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all text-center">
-                  SHOP THE CHAOS
-                </a>
-              </div>
-            </div>
-
-            {/* Right spacer for balance */}
-            <div className="flex-shrink-0 w-[340px]"></div>
+        {/* 2. THE TEXT & CTA: Centered precisely and upscaled for maximum impact */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center text-center w-full max-w-[550px]">
+          {/* Upscaled Slogan Text Stack */}
+          <div className="mb-8 flex flex-col items-center w-full">
+            <p className="text-6xl font-black tracking-[-2px] text-[#39ff14] uppercase leading-none mb-1">
+              Unfiltered.
+            </p>
+            <p className="text-6xl font-black tracking-[-2px] text-[#39ff14] uppercase leading-none mb-1">
+              Unapologetic.
+            </p>
+            <p className="text-6xl font-black tracking-[-2px] text-[#39ff14] uppercase leading-none">
+              Unhinged.
+            </p>
+            <p 
+              className="glitch-text font-black block pt-6 text-[#39ff14]" 
+              style={{ fontSize: "2.25rem", textShadow: "0 0 12px #39ff14" }}
+            >
+              Respect The Glitch ⚡️
+            </p>
           </div>
+
+          {/* Centered CTA Button scaled to match */}
+          <a 
+            href="/shop" 
+            className="w-full max-w-[260px] px-8 py-4 bg-black text-white border-2 border-[#ff0088] text-base font-black tracking-[2px] hover:bg-[#ff0088] hover:text-white hover:shadow-[0_0_20px_#ff0088] active:bg-[#9b00ff] active:border-[#9b00ff] transition-all duration-200 text-center uppercase"
+          >
+            SHOP THE CHAOS
+          </a>
+        </div>
+      </section>
+
+                                          {/* MOBILE HERO (Flex on mobile, hidden on desktop) */}
+      <section 
+        className="hero relative min-h-[480px] flex md:hidden flex-col items-center justify-center bg-black px-6 pt-6 pb-10 border-b border-zinc-900 overflow-hidden"
+        style={{
+          backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url(/Hero-Desktop.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "left center"
+        }}
+      >
+        {/* Content Container */}
+        <div className="z-10 flex flex-col items-center text-center w-full max-w-sm mx-auto relative">
+          {/* Mobile Logo */}
+          <img 
+            src="/header.png" 
+            alt="Unhinged Threads" 
+            className="max-w-[240px] w-full object-contain mb-4" 
+          />
+          
+          {/* Mobile Taglines */}
+          <div className="mb-6 flex flex-col items-center w-full">
+            <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-1">Unfiltered.</p>
+            <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-1">Unapologetic.</p>
+            <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-3">Unhinged.</p>
+            <p 
+              className="glitch-text font-black block text-[#39ff14] tracking-wide uppercase whitespace-nowrap"
+              style={{ 
+                fontSize: "calc(14px + 1.2vw)", 
+                textShadow: '0 0 8px #39ff14',
+                maxWidth: '100%'
+              }}
+            >
+              Respect The Glitch ⚡️
+            </p>
+          </div>
+
+          {/* Mobile CTA Button */}
+          <a 
+            href="/shop" 
+            className="w-full max-w-[280px] px-6 py-3.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[2px] active:bg-[#ff0088] text-center uppercase"
+          >
+            SHOP THE CHAOS
+          </a>
         </div>
       </section>
 
@@ -89,7 +145,7 @@ export default function UnhingedHome() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {products.map((product) => (
+            {products.slice(0, 5).map((product) => (
               <Link 
                 key={product.slug} 
                 href={`/shop/${product.slug}`}
