@@ -230,7 +230,7 @@ export default function CartPage() {
               <div className="mb-6">
                 <div className="text-sm tracking-widest text-white/60 mb-3">SHIPPING OPTIONS</div>
                 {shippingRates.map((rate, i) => (
-                  <div key={i} onClick={() => setSelectedShipping(rate)}
+                   <button key={i} onClick={() => setSelectedShipping(rate)} className={`w-full text-left p-4 border mb-2 cursor-pointer ${selectedShipping?.id === rate.id ? "border-[#ff0088]" : "border-white/20"}`}>
                     className={`p-4 border mb-2 cursor-pointer ${selectedShipping?.id === rate.id ? "border-[#ff0088]" : "border-white/20"}`}>
                     {rate.name} — ${rate.rate}
                   </div>
