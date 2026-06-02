@@ -156,7 +156,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Fireworks Director T-Shirt | Unhinged Threads",
     metaDescription: "Fireworks Director. I run, you run. 4th of July chaos.",
-    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4111, M: 4112, L: 4113, XL: 4114, "2XL": 4115 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5334289252,
       M: 5334289253,
