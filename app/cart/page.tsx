@@ -299,7 +299,7 @@ export default function CartPage() {
                           console.log('%c[Printful] REAL ORDERS DISABLED — Would have sent this payload:', 'color:#ff0088', payload);
                         }
 
-                        setShowCheckout(false);
+                        window.location.href = "/thank-you";
 
                       } catch (err: any) {
                         console.error('[Checkout] Error during order creation:', err);
