@@ -7,7 +7,6 @@ import Header from '@/components/Header';
 
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [showCheckout, setShowCheckout] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchCart = async () => {
@@ -35,7 +34,7 @@ export default function CartPage() {
   };
 
   const handleCheckout = () => {
-    setShowCheckout(true);
+    alert("Checkout coming soon — we're almost there.");
   };
 
   if (loading) {
@@ -142,24 +141,6 @@ export default function CartPage() {
         </div>
       </div>
 
-      {showCheckout && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 px-6">
-          <div className="bg-zinc-950 border border-white/20 p-10 max-w-md text-center">
-            <div className="text-[#39ff14] text-6xl mb-6">😈</div>
-            <h2 className="text-3xl font-black tracking-[-1px] mb-4">CHECKOUT COMING SOON</h2>
-            <p className="text-white/70 mb-8">
-              Just kidding. In a real store this would take you to Stripe or whatever.<br /><br />
-              For now, enjoy your imaginary purchase.
-            </p>
-            <button 
-              onClick={() => setShowCheckout(false)}
-              className="px-10 py-3 bg-white text-black font-black tracking-widest active:bg-[#ff0088] active:text-white transition-all"
-            >
-              CLOSE
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
