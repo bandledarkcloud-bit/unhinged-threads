@@ -272,7 +272,7 @@ export default function CartPage() {
                             state_code: address.state,
                             country_code: "US",
                             zip: address.zip,
-                            email: address.email
+                            email: details?.payer?.email_address || address.email
                           },
                           items: cart.map(item => ({
                             slug: item.slug,
