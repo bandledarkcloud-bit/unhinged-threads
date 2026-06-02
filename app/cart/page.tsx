@@ -3,11 +3,16 @@ export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, updateCartItemQuantity, removeFromCart, CartItem } from '@/lib/cart';
+import { getShippingRates } from '@/app/actions/printful';
 import Header from '@/components/Header';
 
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [shippingRates, setShippingRates] = useState<any[]>([]);
+  const [selectedShipping, setSelectedShipping] = useState<any>(null);
+  const [address, setAddress] = useState({ name: "", address1: "", city: "", state: "", zip: "", email: "" });
 
   const fetchCart = async () => {
     setLoading(true);
@@ -28,13 +33,47 @@ export default function CartPage() {
     await fetchCart();
   };
 
+
+  const fetchShippingRates = async () => {
+    if (!address.name || !address.address1 || !address.city || !address.state || !address.zip) {
+      alert("Please fill in all address fields");
+      return;
+    }
+
+    const items = cart.map(item => ({
+      variant_id: 5334289254, // temp - we will map real ones later
+      quantity: item.quantity,
+      retail_price: item.price.toString()
+    }));
+
+    const recipient = {
+      name: address.name,
+      address1: address.address1,
+      city: address.city,
+      state_code: address.state,
+      country_code: "US",
+      zip: address.zip,
+      email: address.email
+    };
+
+    const result = await getShippingRates(recipient, items);
+    if (result.success) {
+      setShippingRates(result.rates || []);
+    } else {
+      alert("Could not get shipping rates: " + (result.error || "Unknown error"));
+    }
+  };
+
+
   const handleRemove = async (id: string) => {
     await removeFromCart(id);
     await fetchCart();
   };
 
   const handleCheckout = () => {
-    alert("Checkout coming soon — we're almost there.");
+    setShowCheckout(true);
+    setShippingRates([]);
+    setSelectedShipping(null);
   };
 
   if (loading) {
@@ -140,6 +179,55 @@ export default function CartPage() {
           </button>
         </div>
       </div>
+
+
+      {showCheckout && (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 px-6">
+          <div className="bg-zinc-950 border border-white/20 p-8 w-full max-w-lg">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-black tracking-[-1px]">CHECKOUT</h2>
+              <button onClick={() => setShowCheckout(false)} className="text-white/60 hover:text-white">✕</button>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              <input type="text" placeholder="Full Name" className="w-full bg-black border border-white/30 px-4 py-3 text-white" 
+                value={address.name} onChange={e => setAddress({...address, name: e.target.value})} />
+              <input type="text" placeholder="Address" className="w-full bg-black border border-white/30 px-4 py-3 text-white"
+                value={address.address1} onChange={e => setAddress({...address, address1: e.target.value})} />
+              <div className="grid grid-cols-2 gap-4">
+                <input type="text" placeholder="City" className="bg-black border border-white/30 px-4 py-3 text-white"
+                  value={address.city} onChange={e => setAddress({...address, city: e.target.value})} />
+                <input type="text" placeholder="State" className="bg-black border border-white/30 px-4 py-3 text-white"
+                  value={address.state} onChange={e => setAddress({...address, state: e.target.value})} />
+              </div>
+              <input type="text" placeholder="ZIP Code" className="w-full bg-black border border-white/30 px-4 py-3 text-white"
+                value={address.zip} onChange={e => setAddress({...address, zip: e.target.value})} />
+            </div>
+
+            <button onClick={fetchShippingRates} className="w-full py-3 bg-white text-black font-black mb-6">
+              GET SHIPPING RATES
+            </button>
+
+            {shippingRates.length > 0 && (
+              <div className="mb-6">
+                <div className="text-sm tracking-widest text-white/60 mb-3">SHIPPING OPTIONS</div>
+                {shippingRates.map((rate, i) => (
+                  <div key={i} onClick={() => setSelectedShipping(rate)}
+                    className={`p-4 border mb-2 cursor-pointer ${selectedShipping?.id === rate.id ? "border-[#ff0088]" : "border-white/20"}`}>
+                    {rate.name} — ${rate.rate}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {selectedShipping && (
+              <button className="w-full py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px]">
+                PAY WITH PAYPAL — ${(subtotal + parseFloat(selectedShipping.rate)).toFixed(2)}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );
