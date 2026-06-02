@@ -38,7 +38,7 @@ export default function ThankYouPage() {
             href="/"
             className="px-10 py-4 border-2 border-white/30 hover:border-white font-black text-lg tracking-[1px] transition-all"
           >
-            BACK TO THE VOID
+            HOME
           </Link>
         </div>
 
