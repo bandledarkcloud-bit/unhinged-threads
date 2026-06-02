@@ -13,8 +13,11 @@ export default function ThankYouPage() {
           ORDER PLACED.
         </h1>
 
-        <p className="text-[#ff0088] text-xl tracking-tight mb-8">
+        <p className="text-[#ff0088] text-xl tracking-tight mb-1">
           You&apos;ve made a terrible mistake.
+        </p>
+        <p className="text-[#39ff14] text-xl tracking-tight mb-8">
+          We&apos;ll ship it anyways.
         </p>
 
         <div className="max-w-md mx-auto border border-white/10 bg-zinc-950 p-6 mb-10 text-left">
