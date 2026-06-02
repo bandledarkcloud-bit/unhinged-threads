@@ -35,7 +35,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Certified Cougar Bait T-Shirt | Unhinged Threads",
     metaDescription: "Certified Cougar Bait. For men who prefer experience over innocence.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5334281393,
       M: 5334281394,
@@ -59,7 +59,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "No Fat Chicks T-Shirt | Unhinged Threads",
     metaDescription: "No Fat Chicks. Brutal honesty on a shirt.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5334280273,
       M: 5334280275,
@@ -84,7 +84,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Good Girl T-Shirt | Unhinged Threads",
     metaDescription: "Good Girl. She wants to hear it even when she's not.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5332833314,
       M: 5332833315,
@@ -108,7 +108,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "White Boy Summer T-Shirt | Unhinged Threads",
     metaDescription: "White Boy Summer. Certified.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5330249069,
       M: 5330249070,
@@ -131,7 +131,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Not Responsible For My Face T-Shirt | Unhinged Threads",
     metaDescription: "I am not responsible for what my face does when you talk.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5334281381,
       M: 5334281382,
@@ -156,7 +156,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "2XL"],
     metaTitle: "Fireworks Director T-Shirt | Unhinged Threads",
     metaDescription: "Fireworks Director. I run, you run. 4th of July chaos.",
-    catalogVariantIds: {}, // SHORT catalog IDs for shipping rates
+    catalogVariantIds: { S: 4016, M: 4017, L: 4018, XL: 4019, "2XL": 4020 }, // SHORT catalog IDs for shipping rates
     printfulVariants: {
       S: 5334289252,
       M: 5334289253,
