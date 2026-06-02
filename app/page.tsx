@@ -28,101 +28,72 @@ export default function UnhingedHome() {
     { header: "MENTAL HEALTH", sub: "Therapy is $150. Being unhinged is $29.99. We chose the cheaper option." },
     { header: "RELATIONSHIP CHAOS", sub: "We don't fix relationships. We make shirts for the aftermath." },
     { header: "CORPORATE HATRED", sub: "Fuck your job. Wear the shirt that agrees with you." },
-    { header: "CHAOTIC PATRIOTISM", sub: "America, but make it feral." },
-    { header: "HOLIDAY CHAOS", sub: "Santa's watching. And he's disappointed." },
   ];
 
-  const productsByFlavor = products.reduce((acc, product) => {
-    if (!acc[product.flavor]) acc[product.flavor] = [];
-    acc[product.flavor].push(product);
-    return acc;
-  }, {} as Record<string, typeof products>);
+  // Best Sellers data (5 cards)
+  const bestSellers = [
+    { slug: "certified-cougar-bait", title: "CERTIFIED COUGAR BAIT", price: 29.99 },
+    { slug: "no-fat-chicks", title: "NO FAT CHICKS", price: 29.99 },
+    { slug: "not-responsible-for-my-face", title: "NOT RESPONSIBLE", price: 29.99 },
+    { slug: "good-girl", title: "GOOD GIRL", price: 29.99 },
+    { slug: "white-boy-summer", title: "WHITE BOY SUMMER", price: 29.99 },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono font-bebas overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white font-mono">
       <Header />
 
-      {/* HERO - Mobile (no logo) */}
-      <section 
-        className="hero relative h-[620px] flex items-center justify-center bg-black md:hidden"
-        style={{
-          backgroundImage: "url(/Hero-mobile.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-4">
-              <p className="text-5xl font-black tracking-[-1.5px] text-[#39ff14] leading-tight">
-                Unfiltered. Unapologetic. Unhinged.
-              </p>
-              <p className="glitch-text text-sm mt-2 whitespace-nowrap" style={{fontSize: "2rem"}}>Respect The Glitch ⚡️</p>
-            </div>
-
-            <div className="flex flex-col gap-2 w-full max-w-[200px]">
-              <a href="/shop" className="px-6 py-2.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[1px] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all text-center">
+      {/* HERO SECTION */}
+      <section className="relative h-[620px] flex items-center justify-center bg-black overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/Hero-Desktop.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <div className="flex items-center justify-between w-full">
+            {/* Left spacer for logo balance */}
+            <div className="w-[340px] hidden md:block" />
+            
+            {/* Center content */}
+            <div className="flex-1 max-w-2xl">
+              <h1 className="text-6xl md:text-7xl font-black tracking-[-4px] leading-none mb-4">
+                UNFILTERED.<br />UNAPOLOGETIC.<br />UNHINGED.
+              </h1>
+              <div className="text-[#ff0088] text-3xl font-black tracking-[-1px] mb-8 animate-glitch">
+                RESPECT THE GLITCH ⚡️
+              </div>
+              <Link 
+                href="/shop"
+                className="inline-block px-12 py-4 bg-black text-white border-2 border-[#ff0088] font-black text-lg tracking-[2px] hover:bg-[#ff0088] hover:text-black active:bg-[#9b00ff] active:border-[#9b00ff] transition-all"
+              >
                 SHOP THE CHAOS
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Desktop Hero */}
-      <section 
-        className="hero relative h-[620px] hidden md:flex items-center justify-center bg-black"
-        style={{
-          backgroundImage: "url(/Hero-Desktop.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <div className="flex flex-row items-center justify-between gap-8">
-            {/* Logo - far left */}
-            <div className="flex-shrink-0 -ml-12">
-              <img src="/header.png" alt="Unhinged Threads - Respect The Glitch" className="max-w-[420px] w-full" />
+              </Link>
             </div>
 
-            {/* Centered text */}
-            <div className="flex flex-col items-center text-center flex-1">
-              <div className="mb-4">
-                <p className="text-5xl font-black tracking-[-1.5px] text-[#39ff14] leading-tight">
-                  Unfiltered. Unapologetic. Unhinged.
-                </p>
-                <p className="glitch-text text-sm mt-2 whitespace-nowrap" style={{fontSize: "2rem"}}>Respect The Glitch ⚡️</p>
-              </div>
-
-              <div className="flex flex-col gap-2 w-full max-w-[200px]">
-                <a href="/shop" className="px-6 py-2.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[1px] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all text-center">
-                  SHOP THE CHAOS
-                </a>
-              </div>
-            </div>
-
-            {/* Right spacer for balance */}
-            <div className="flex-shrink-0 w-[340px]"></div>
+            {/* Right spacer */}
+            <div className="w-[340px] hidden md:block" />
           </div>
         </div>
       </section>
 
       {/* BEST SELLERS */}
-      <section className="pb-20 bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-6 pt-10">
-          <div className="mb-8">
-            <div className="text-[#ff0088] text-xs tracking-[4px] mb-1">TOP DEGENERACY</div>
-            <h2 className="text-4xl sm:text-5xl font-black tracking-[-3px] text-[#9b00ff]">BEST SELLERS</h2>
+      <section className="py-16 bg-zinc-950">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-1">TOP DEGENERACY</div>
+            <h2 className="text-5xl font-black tracking-[-3px]">BEST SELLERS</h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {products.filter(p => p.slug !== "fireworks-director").map((product) => (
+            {bestSellers.map((product, index) => (
               <Link 
-                key={product.slug} 
+                key={index} 
                 href={`/shop/${product.slug}`}
-                className="border border-white/10 bg-black flex flex-col hover:border-[#39ff14] transition-all"
+                className="product-card border border-white/10 bg-black hover:border-[#39ff14] transition-all flex flex-col"
               >
-                <div className="aspect-square bg-black overflow-hidden border-b border-white/10">
+                <div className="aspect-[4/3] bg-zinc-900 border-b border-white/10 overflow-hidden">
                   <img 
                     src={`/products/${product.slug}/roxy.png`} 
                     alt={product.title}
@@ -159,7 +130,7 @@ export default function UnhingedHome() {
                 <Link href={`/shop/${slug}`}>
                   <img 
                     src={`/products/${slug}/roxy.png`} 
-                    alt="Good Girl Shirt"
+                    alt={weeklyProduct.title}
                     className="w-full h-full object-cover"
                   />
                 </Link>
@@ -177,7 +148,7 @@ export default function UnhingedHome() {
                     href={`/shop/${slug}`}
                     className="px-8 py-3 bg-white text-black text-sm font-black active:bg-[#ff0088] active:text-white transition-all"
                   >
-                    ADD TO CART
+                    VIEW CHAOS
                   </Link>
                 </div>
               </div>
@@ -192,27 +163,28 @@ export default function UnhingedHome() {
       </section>
 
       {/* RESPECT THE GLITCH - Full lower section */}
-      <section className="py-20 bg-black border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="max-w-2xl mx-auto space-y-4 text-lg mb-10">
-            <p className="text-[#ff0088]">We don't make clothes for people who want to fit in.</p>
-            <p className="text-[#39ff14]">We make clothes for people who want to be remembered — even if it's for all the wrong reasons.</p>
-            <p className="text-[#9b00ff]">Every shirt is a warning label. Every print is a confession.</p>
-            <p className="text-[#ff0088]">If you're still reading this, you already know you need one.</p>
-          </div>
-
-          <div 
-            className="text-[52px] md:text-[96px] font-black tracking-[-4px] leading-none"
-            style={{ 
-              color: '#ff0088',
-              textShadow: '0 0 10px #39ff14, 0 0 20px #ff0088, 0 0 40px #39ff14'
-            }}
+      <section className="py-20 bg-zinc-950 border-t border-white/10">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-4">STAY UNHINGED</div>
+          <h2 className="text-6xl font-black tracking-[-3px] mb-6">RESPECT THE GLITCH</h2>
+          <p className="text-xl text-white/70 mb-8">
+            Every shirt is a middle finger to the algorithm.<br />Wear it loud. Wear it proud.
+          </p>
+          <Link 
+            href="/shop"
+            className="inline-block px-12 py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px] hover:bg-white hover:text-black active:bg-[#39ff14] active:text-black transition-all"
           >
-            RESPECT THE GLITCH.
-          </div>
+            ENTER THE CHAOS
+          </Link>
         </div>
       </section>
+
+      <footer className="bg-black border-t border-white/10 py-8">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
+          <div>© {new Date().getFullYear()} UNHINGED THREADS™</div>
+          <div className="mt-2 md:mt-0">Made for people who say the quiet part out loud.</div>
+        </div>
+      </footer>
     </div>
   );
 }
-
