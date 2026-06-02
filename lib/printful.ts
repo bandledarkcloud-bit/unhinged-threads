@@ -5,7 +5,7 @@ const PRINTFUL_API_URL = 'https://api.printful.com';
 const UNHINGED_THREADS_STORE_ID = '18250831';
 
 // Safety flag - set to true only when ready to place real orders
-export const ENABLE_REAL_ORDERS = true;
+export const ENABLE_REAL_ORDERS = false;
 
 export function getPrintfulHeaders(storeId?: string) {
   const apiKey = process.env.PRINTFUL_API_KEY;

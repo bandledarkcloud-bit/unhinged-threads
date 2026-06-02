@@ -240,7 +240,7 @@ export default function CartPage() {
 
             {selectedShipping && (
               <PayPalScriptProvider options={{ 
-                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
+                clientId: process.env.NEXT_PUBLIC_PAYPAL_SANDBOX_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
                 currency: "USD"
               }}>
                 <div className="mt-4 w-full max-w-[340px] mx-auto">
