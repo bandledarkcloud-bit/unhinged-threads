@@ -243,7 +243,7 @@ export default function CartPage() {
                 clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
                 currency: "USD"
               }}>
-                <div className="mt-4 max-w-full overflow-hidden">
+                <div className="mt-4 w-full max-w-[340px] mx-auto">
                   <PayPalButtons
                     style={{ layout: "vertical" }}
                     createOrder={(data, actions) => {
