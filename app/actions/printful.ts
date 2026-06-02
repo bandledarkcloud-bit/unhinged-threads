@@ -80,20 +80,23 @@ export async function getShippingRates(
 // CREATE PRINTFUL ORDER (called after PayPal)
 // ============================================
 export async function createPrintfulOrderAction(payload: {
-  cart: any[];
   recipient: any;
+  items?: any[];
+  cart?: any[];
 }) {
   console.log("=== SERVER ACTION DEBUG ===");
-  console.log("Cart items received:", payload?.cart);
-  console.log("Recipient:", payload?.recipient);
+  console.log("Payload received:", payload);
   console.log("===========================");
 
-  if (!payload?.cart || payload.cart.length === 0) {
+  // Accept either `items` or `cart` (whatever the cart page sends)
+  const cartItems = payload.items || payload.cart || [];
+
+  if (cartItems.length === 0) {
     return { success: false, error: "Cart is empty" };
   }
 
-  // Build payload using LONG variant IDs (printfulVariants)
-  const printfulPayload = buildPrintfulOrderPayload(payload.cart, payload.recipient);
+  // Build the Printful payload using the LONG variant IDs
+  const printfulPayload = buildPrintfulOrderPayload(cartItems, payload.recipient);
 
   console.log("=== FINAL PRINTFUL PAYLOAD ===");
   console.log(JSON.stringify(printfulPayload, null, 2));
@@ -104,7 +107,6 @@ export async function createPrintfulOrderAction(payload: {
     return { success: false, error: "No valid Printful items could be created" };
   }
 
-  // This will respect ENABLE_REAL_ORDERS = false for now
   const result = await createPrintfulOrder(printfulPayload);
 
   return result;
