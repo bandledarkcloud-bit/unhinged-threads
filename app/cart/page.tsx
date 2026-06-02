@@ -259,6 +259,7 @@ export default function CartPage() {
                       });
                     }}
                     onApprove={async (data, actions) => {
+                      if (!actions.order) return;
                       const details = await actions.order.capture();
                       
                       const confirmed = window.confirm(
