@@ -47,11 +47,17 @@ export default function UnhingedHome() {
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="flex items-center justify-between w-full">
-            {/* Left spacer for logo balance */}
-            <div className="w-[340px] hidden md:block" />
+            {/* Left column - Logo */}
+            <div className="flex-shrink-0 -ml-12 hidden md:block">
+              <img 
+                src="/header.png" 
+                alt="Unhinged Threads - Respect The Glitch" 
+                className="max-w-[420px] w-full" 
+              />
+            </div>
             
             {/* Center content */}
-            <div className="flex-1 max-w-2xl">
+            <div className="flex-1 max-w-2xl text-center">
               <h1 className="text-6xl md:text-7xl font-black tracking-[-4px] leading-none mb-4">
                 UNFILTERED.<br />UNAPOLOGETIC.<br />UNHINGED.
               </h1>
@@ -66,7 +72,7 @@ export default function UnhingedHome() {
               </Link>
             </div>
 
-            {/* Right spacer */}
+            {/* Right spacer for balance */}
             <div className="w-[340px] hidden md:block" />
           </div>
         </div>
