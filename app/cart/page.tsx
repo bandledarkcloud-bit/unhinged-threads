@@ -82,7 +82,6 @@ export default function CartPage() {
     }
   };
 
-
   const handleRemove = async (id: string) => {
     await removeFromCart(id);
     await fetchCart();
@@ -198,7 +197,6 @@ export default function CartPage() {
         </div>
       </div>
 
-
       {showCheckout && (
         <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 overflow-y-auto">
           <div className="bg-zinc-950 border border-white/20 max-w-lg w-full p-8 my-8 max-h-[90vh] overflow-y-auto rounded-lg">
@@ -289,8 +287,12 @@ export default function CartPage() {
                           console.log('%c[Printful] Order result:', 'color:#39ff14', result);
 
                           if (!result.success) {
-                            console.error('[Printful] Order creation failed:', result.error);
-                            alert(`Order creation failed: ${JSON.stringify(result.error)}`);
+                            console.error('[Printful] Order creation failed:', result);
+                            
+                            // Show a clean message depending on why it failed
+                            const errorMessage = result.message || result.error || "Unknown error";
+                            alert(`Order creation failed: ${errorMessage}`);
+                            
                             return;
                           }
                         } else {
