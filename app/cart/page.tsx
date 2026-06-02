@@ -43,7 +43,18 @@ export default function CartPage() {
 
         const items = cart.map(item => {
       const product = products.find(p => p.slug === item.slug);
-      const variantId = product?.printfulVariants?.[item.size || "L"] || 5334289254;
+      const sizeKey = item.size || "L";
+      let variantId = product?.printfulVariants?.[sizeKey];
+
+      if (!variantId && product?.printfulVariants) {
+        const keys = Object.keys(product.printfulVariants);
+        variantId = product.printfulVariants[keys[0]];
+      }
+
+      if (!variantId) {
+        console.warn("No variant ID found for", item.slug, item.size);
+        return null;
+      }
 
       return {
         variant_id: Number(variantId),
@@ -62,7 +73,7 @@ export default function CartPage() {
       email: address.email
     };
 
-    const result = await getShippingRates(recipient, items);
+    const result = await getShippingRates(recipient, items as any);
     if (result.success) {
       setShippingRates(result.rates || []);
     } else {
