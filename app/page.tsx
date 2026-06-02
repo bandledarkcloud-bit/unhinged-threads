@@ -30,14 +30,8 @@ export default function UnhingedHome() {
     { header: "CORPORATE HATRED", sub: "Fuck your job. Wear the shirt that agrees with you." },
   ];
 
-  // Best Sellers data (5 cards)
-  const bestSellers = [
-    { slug: "certified-cougar-bait", title: "CERTIFIED COUGAR BAIT", price: 29.99 },
-    { slug: "no-fat-chicks", title: "NO FAT CHICKS", price: 29.99 },
-    { slug: "not-responsible-for-my-face", title: "NOT RESPONSIBLE", price: 29.99 },
-    { slug: "good-girl", title: "GOOD GIRL", price: 29.99 },
-    { slug: "white-boy-summer", title: "WHITE BOY SUMMER", price: 29.99 },
-  ];
+  // Best Sellers - pull from real products (first 5)
+  const bestSellers = products.slice(0, 5);
 
   return (
     <div className="min-h-screen bg-black text-white font-mono">
@@ -87,9 +81,9 @@ export default function UnhingedHome() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {bestSellers.map((product, index) => (
+            {bestSellers.map((product) => (
               <Link 
-                key={index} 
+                key={product.slug} 
                 href={`/shop/${product.slug}`}
                 className="product-card border border-white/10 bg-black hover:border-[#39ff14] transition-all flex flex-col"
               >
