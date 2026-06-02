@@ -9,20 +9,19 @@ export default function ThankYouPage() {
       <div className="max-w-2xl mx-auto px-6 pt-24 pb-20 text-center">
         <div className="text-6xl mb-6">🖤</div>
 
-        <h1 className="text-5xl md:text-7xl font-black tracking-[-4px] mb-4">
-          ORDER<br />
-          <span className="text-[#ff0088]">PLACED.</span>
+        <h1 className="text-4xl md:text-6xl font-black tracking-[-3px] mb-3">
+          ORDER PLACED.
         </h1>
 
-        <p className="text-xl text-white/70 mb-8 tracking-tight">
-          Your chaos is now in production.
+        <p className="text-[#ff0088] text-xl tracking-tight mb-8">
+          You&apos;ve made a terrible mistake.
         </p>
 
         <div className="max-w-md mx-auto border border-white/10 bg-zinc-950 p-6 mb-10 text-left">
           <div className="text-sm tracking-[2px] text-white/50 mb-3">WHAT HAPPENS NEXT</div>
           <ul className="space-y-2 text-white/80 text-sm">
             <li>• Printful will send you a confirmation email</li>
-            <li>• You'll get tracking when it ships</li>
+            <li>• You&apos;ll get tracking when it ships</li>
             <li>• Expect it in 5–12 business days</li>
           </ul>
         </div>
