@@ -74,7 +74,11 @@ export function buildPrintfulOrderPayload(
 ) {
   const items = cartItems.map((item) => {
     const product = products.find((p) => p.slug === item.slug);
-    const variantId = product?.printfulVariants?.[item.size];
+    const variantId = product?.catalogVariantIds?.[item.size];
+
+    console.log("Looking for slug:", item.slug, "size:", item.size);
+    console.log("Product found:", !!product);
+    console.log("variantId found:", variantId);
 
     if (!variantId) {
       console.warn(`[Printful] Missing variant ID for ${item.slug} size ${item.size}`);
