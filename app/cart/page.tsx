@@ -258,7 +258,7 @@ export default function CartPage() {
                       });
                     }}
                     onApprove={async (data, actions) => {
-                      const details = await actions.order?.capture();
+                      const details = await actions.order.capture();
                       
                       const confirmed = window.confirm(
                         `Payment successful! Create real Printful order now?\n\n` +
