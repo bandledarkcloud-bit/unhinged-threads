@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, updateCartItemQuantity, removeFromCart, CartItem } from '@/lib/cart';
 import { getShippingRates } from '@/app/actions/printful';
+import { products } from '@/lib/products';
 import Header from '@/components/Header';
 
 export default function CartPage() {
@@ -40,11 +41,16 @@ export default function CartPage() {
       return;
     }
 
-    const items = cart.map(item => ({
-      variant_id: 5334289254, // temp - we will map real ones later
-      quantity: item.quantity,
-      retail_price: item.price.toString()
-    }));
+        const items = cart.map(item => {
+      const product = products.find(p => p.slug === item.slug);
+      const variantId = product?.printfulVariants?.[item.size || "L"] || 5334289254;
+
+      return {
+        variant_id: Number(variantId),
+        quantity: item.quantity,
+        retail_price: item.price.toString()
+      };
+    });
 
     const recipient = {
       name: address.name,
@@ -60,7 +66,7 @@ export default function CartPage() {
     if (result.success) {
       setShippingRates(result.rates || []);
     } else {
-      alert("Could not get shipping rates: " + (result.error || "Unknown error"));
+      alert("Could not get shipping rates: " + JSON.stringify(result.error || "Unknown error"));
     }
   };
 
