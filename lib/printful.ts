@@ -149,3 +149,25 @@ export async function getPrintfulShippingRates(
     return { success: false, error };
   }
 }
+
+// Fetch all products from the Printful store
+export async function getPrintfulProducts() {
+  try {
+    const result = await printfulFetch('/store/products');
+    return { success: true, products: result.result };
+  } catch (error) {
+    console.error('[Printful] Failed to fetch products:', error);
+    return { success: false, error };
+  }
+}
+
+// Fetch a single product with all its variants
+export async function getPrintfulProduct(productId: number) {
+  try {
+    const result = await printfulFetch(`/store/products/${productId}`);
+    return { success: true, product: result.result };
+  } catch (error) {
+    console.error(`[Printful] Failed to fetch product ${productId}:`, error);
+    return { success: false, error };
+  }
+}
