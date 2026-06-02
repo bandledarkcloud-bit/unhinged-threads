@@ -10,7 +10,8 @@ export default function ThankYouPage() {
         <div className="text-6xl mb-6">🖤</div>
 
         <h1 className="text-5xl md:text-7xl font-black tracking-[-4px] mb-4">
-          ORDER<br />FUCKING<br />PLACED.
+          ORDER<br />
+          <span className="text-[#ff0088]">PLACED.</span>
         </h1>
 
         <p className="text-xl text-white/70 mb-8 tracking-tight">
@@ -29,7 +30,7 @@ export default function ThankYouPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/shop"
-            className="px-10 py-4 bg-white text-black font-black text-lg tracking-[1px] active:bg-[#ff0088] active:text-white transition-all"
+            className="px-10 py-4 bg-[#ff0088] text-white font-black text-lg tracking-[1px] active:bg-white active:text-black transition-all"
           >
             BROWSE MORE CHAOS
           </Link>
