@@ -1,8 +1,17 @@
-'use client';
-
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { products } from '@/lib/products';
 import Header from '@/components/Header';
+
+export const metadata: Metadata = {
+  title: "UNHINGED THREADS™ | Respect The Glitch",
+  description: "We say what you’re thinking but shouldn’t. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
+  openGraph: {
+    title: "UNHINGED THREADS™ | Respect The Glitch",
+    description: "We say what you’re thinking but shouldn’t. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
+    images: [{ url: "/og-image.png" }],
+  },
+};
 
 const weeklyProduct = {
   title: "FIREWORKS DIRECTOR",
@@ -14,17 +23,26 @@ const weeklyProduct = {
 export default function UnhingedHome() {
   const slug = "fireworks-director";
 
-  const handleAddToCart = (e: React.MouseEvent, itemTitle: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    alert(`⚡️ ${itemTitle} ADDED TO THE CHAOS (CART)!`);
-  };
+  const flavorRows = [
+    { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },
+    { header: "MENTAL HEALTH", sub: "Therapy is $150. Being unhinged is $29.99. We chose the cheaper option." },
+    { header: "RELATIONSHIP CHAOS", sub: "We don't fix relationships. We make shirts for the aftermath." },
+    { header: "CORPORATE HATRED", sub: "Fuck your job. Wear the shirt that agrees with you." },
+    { header: "CHAOTIC PATRIOTISM", sub: "America, but make it feral." },
+    { header: "HOLIDAY CHAOS", sub: "Santa's watching. And he's disappointed." },
+  ];
+
+  const productsByFlavor = products.reduce((acc, product) => {
+    if (!acc[product.flavor]) acc[product.flavor] = [];
+    acc[product.flavor].push(product);
+    return acc;
+  }, {} as Record<string, typeof products>);
 
   return (
     <div className="min-h-screen bg-black text-white font-mono font-bebas overflow-x-hidden">
       <Header />
 
-      {/* DESKTOP HERO (Hidden on mobile, flex on desktop) */}
+            {/* DESKTOP HERO (Hidden on mobile, flex on desktop) */}
       <section 
         className="hero relative h-[620px] hidden md:flex items-center bg-black overflow-hidden"
         style={{
@@ -73,7 +91,7 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-      {/* MOBILE HERO (Flex on mobile, hidden on desktop) */}
+                                          {/* MOBILE HERO (Flex on mobile, hidden on desktop) */}
       <section 
         className="hero relative min-h-[480px] flex md:hidden flex-col items-center justify-center bg-black px-6 pt-6 pb-10 border-b border-zinc-900 overflow-hidden"
         style={{
@@ -111,7 +129,7 @@ export default function UnhingedHome() {
           {/* Mobile CTA Button */}
           <a 
             href="/shop" 
-            className="w-full max-w-[280px] px-6 py-3.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[2px] active:bg-[#ff0088] text-center uppercase relative z-10"
+            className="w-full max-w-[280px] px-6 py-3.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[2px] active:bg-[#ff0088] text-center uppercase"
           >
             SHOP THE CHAOS
           </a>
@@ -129,7 +147,7 @@ export default function UnhingedHome() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {products.slice(0, 5).map((product) => (
               <Link 
-                key={product.slug}
+                key={product.slug} 
                 href={`/shop/${product.slug}`}
                 className="border border-white/10 bg-black flex flex-col hover:border-[#39ff14] transition-all"
               >
@@ -163,13 +181,14 @@ export default function UnhingedHome() {
             <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-1">THIS WEEK&apos;S DEGENERACY</div>
             <h2 className="text-[#9b00ff] text-6xl font-black tracking-[-4px] leading-none">FRESH CHAOS</h2>
           </div>
+
           <div className="max-w-md mx-auto">
             <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
               <div className="aspect-square bg-black border border-white/10 overflow-hidden">
                 <Link href={`/shop/${slug}`}>
                   <img 
                     src={`/products/${slug}/roxy.png`} 
-                    alt={weeklyProduct.title}
+                    alt="Good Girl Shirt"
                     className="w-full h-full object-cover"
                   />
                 </Link>
@@ -185,9 +204,9 @@ export default function UnhingedHome() {
                   <div className="text-4xl font-black">${weeklyProduct.price}</div>
                   <Link 
                     href={`/shop/${slug}`}
-                    className="px-8 py-3 bg-white text-black text-sm font-black hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:text-white transition-all"
+                    className="px-8 py-3 bg-white text-black text-sm font-black active:bg-[#ff0088] active:text-white transition-all"
                   >
-                    VIEW CHAOS
+                    ADD TO CART
                   </Link>
                 </div>
               </div>
@@ -201,70 +220,28 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-      {/* LOWEST SECTION: Call To Action Banner */}
-      <section className="relative py-24 bg-black border-t border-zinc-900 text-center flex flex-col items-center justify-center px-4">
-        <span className="text-xs font-black tracking-[4px] text-[#ff0088] uppercase mb-4">
-          STAY UNHINGED
-        </span>
-        <h2 className="text-5xl md:text-6xl font-black tracking-[-2px] text-white uppercase mb-6">
-          RESPECT THE GLITCH
-        </h2>
-        <div className="max-w-xl mx-auto mb-10 space-y-2">
-          <p className="text-zinc-400 font-mono text-sm md:text-base tracking-wide">
-            Every shirt is a middle finger to the algorithm.
-          </p>
-          <p className="text-zinc-400 font-mono text-sm md:text-base tracking-wide">
-            Wear it loud. Wear it proud.
-          </p>
+      {/* RESPECT THE GLITCH - Full lower section */}
+      <section className="py-20 bg-black border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="max-w-2xl mx-auto space-y-4 text-lg mb-10">
+            <p className="text-[#ff0088]">We don't make clothes for people who want to fit in.</p>
+            <p className="text-[#39ff14]">We make clothes for people who want to be remembered — even if it's for all the wrong reasons.</p>
+            <p className="text-[#9b00ff]">Every shirt is a warning label. Every print is a confession.</p>
+            <p className="text-[#ff0088]">If you're still reading this, you already know you need one.</p>
+          </div>
+
+          <div 
+            className="text-[52px] md:text-[96px] font-black tracking-[-4px] leading-none"
+            style={{ 
+              color: '#ff0088',
+              textShadow: '0 0 10px #39ff14, 0 0 20px #ff0088, 0 0 40px #39ff14'
+            }}
+          >
+            RESPECT THE GLITCH.
+          </div>
         </div>
-        <a 
-          href="/shop" 
-          className="px-10 py-4 bg-[#ff0088] text-white text-sm font-black tracking-[3px] hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-200 uppercase"
-        >
-          ENTER THE CHAOS
-        </a>
       </section>
-
-      {/* FOOTER: Clean, Consolidated Single Container Layout */}
-      <footer className="w-full bg-black border-t-2 border-zinc-900 pt-12 pb-8 px-6 md:px-12 font-mono text-xs text-zinc-500">
-        <div className="max-w-7xl mx-auto flex flex-col space-y-8">
-          
-          {/* Top Row: Copyright & Brand Statement */}
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center md:text-left border-b border-zinc-950 pb-8">
-            <p className="tracking-wider">
-              © 2026 UNHINGED THREADS™
-            </p>
-            <p className="text-zinc-400 italic">
-              Made for people who say the quiet part out loud.
-            </p>
-          </div>
-
-          {/* Bottom Row: Socials, Legal Disclaimer, & Contact Email */}
-          <div className="flex flex-col items-center space-y-4 pt-2">
-            {/* Social Icons Stack */}
-            <div className="flex items-center space-x-6 text-white text-lg">
-              <a href="#" className="hover:text-[#39ff14] transition-colors duration-200"><i className="fab fa-x-twitter"></i></a>
-              <a href="#" className="hover:text-[#ff0088] transition-colors duration-200"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="hover:text-[#9b00ff] transition-colors duration-200"><i className="fab fa-facebook"></i></a>
-              <a href="#" className="hover:text-[#39ff14] transition-colors duration-200"><i className="fab fa-tiktok"></i></a>
-            </div>
-
-            {/* Legal / Policy Brand Banner */}
-            <p className="text-[#ff0088] font-black tracking-[1.5px] uppercase text-center">
-              © UNHINGED THREADS™ — NO REFUNDS. NO REGRETS.
-            </p>
-
-            {/* Support Email */}
-            <a 
-              href="mailto:hellothere@threadglitch.com" 
-              className="text-zinc-400 hover:text-[#39ff14] underline underline-offset-4 transition-colors duration-200"
-            >
-              hellothere@threadglitch.com
-            </a>
-          </div>
-
-        </div>
-      </footer>
     </div>
   );
 }
+
