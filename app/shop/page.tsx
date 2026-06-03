@@ -7,7 +7,7 @@ export default function ShopPage() {
     <div className="min-h-screen bg-black text-white font-mono">
       <Header />
 
-      <div className="max-w-7xl mx-auto px-6 pt-10 pb-20">
+      <div className="max-w-[1800px] mx-auto px-6 pt-10 pb-20">
         <div className="mb-10">
           <div className="text-[#ff0088] text-xs tracking-[4px] mb-1">ALL THE DEGENERACY</div>
           <h1 className="text-5xl font-black tracking-[-3px]">SHOP ALL</h1>

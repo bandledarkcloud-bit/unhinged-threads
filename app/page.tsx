@@ -138,14 +138,14 @@ export default function UnhingedHome() {
 
       {/* BEST SELLERS */}
       <section className="pb-20 bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-6 pt-10">
+        <div className="max-w-[1800px] mx-auto px-6 pt-10">
           <div className="mb-8">
             <div className="text-[#ff0088] text-xs tracking-[4px] mb-1">TOP DEGENERACY</div>
             <h2 className="text-4xl sm:text-5xl font-black tracking-[-3px] text-[#9b00ff]">BEST SELLERS</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {products.slice(0, 5).map((product) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {products.slice(0, 4).map((product) => (
               <Link 
                 key={product.slug} 
                 href={`/shop/${product.slug}`}
