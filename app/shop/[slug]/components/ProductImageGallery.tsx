@@ -12,7 +12,7 @@ export default function ProductImageGallery({ slug, title }: ProductImageGallery
 
   return (
     <>
-      {/* 2 Images + 1 Video - Square */}
+      {/* 2 Images - Square */}
       <div className="flex flex-col gap-3 max-w-[180px] md:max-w-[256px] lg:ml-auto">
         {/* Image 1 - Click to zoom */}
         <div 
@@ -34,16 +34,6 @@ export default function ProductImageGallery({ slug, title }: ProductImageGallery
             src={`/products/${slug}/roxy.png`} 
             alt={`${title} on model`}
             className="w-full h-full object-cover"
-          />
-        </div>
-        {/* Video */}
-        <div className="aspect-square bg-zinc-950 border border-white/10 overflow-hidden">
-          <video 
-            src={`/products/${slug}/video.mp4`} 
-            controls 
-            className="w-full h-full object-cover"
-            muted
-            loop
           />
         </div>
       </div>

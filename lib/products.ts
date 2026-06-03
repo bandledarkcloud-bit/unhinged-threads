@@ -165,4 +165,28 @@ export const products: Product[] = [
       "2XL": 5334289256,
     },
   },
+  {
+    slug: "just-here-to-bang",
+    title: "JUST HERE TO BANG",
+    price: 29.99,
+    flavor: "4TH OF JULY CHAOS",
+    bullets: [
+      { icon: "🎆", text: "Just Here To Bang — Exactly what it says on the tin" },
+      { icon: "🚀", text: "Pin-up girl on a firework. Zero subtlety" },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "Just Here To Bang T-Shirt | Unhinged Threads",
+    metaDescription: "Just Here To Bang. Pin-up girl on a firework. 4th of July chaos.",
+    catalogVariantIds: { S: 4161, M: 4162, L: 4163, XL: 4164, "2XL": 4165 },
+    printfulVariants: {
+      S: 5337717075,
+      M: 5337717076,
+      L: 5337717077,
+      XL: 5337717078,
+      "2XL": 5337717079,
+    },
+  },
 ];

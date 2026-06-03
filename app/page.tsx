@@ -221,7 +221,7 @@ export default function UnhingedHome() {
 
           <div className="text-center mt-10">
             <a href="/shop" className="inline-block px-8 py-3 bg-black text-white text-sm font-black tracking-[1px] border-2 border-[#ff0088] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all">
-              SHOP ALL CHAOS
+              SHOP THE CHAOS
             </a>
           </div>
         </div>
