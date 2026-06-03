@@ -174,53 +174,58 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-      {/* WEEKLY DROP - Larger featured section */}
+      {/* WEEKLY DROP - Two column layout */}
       <section className="py-16 bg-black border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="mb-6 text-center">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-8 text-center">
             <div className="text-[#ff0088] text-sm font-black tracking-[4px] mb-1">THIS WEEK&apos;S DEGENERACY</div>
             <h2 className="text-[#9b00ff] text-6xl font-black tracking-[-4px] leading-none">FRESH CHAOS</h2>
           </div>
 
-          <div className="max-w-md mx-auto">
-            <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
-              <div className="aspect-square bg-black border border-white/10 overflow-hidden">
-                <Link href={`/shop/${slug}`}>
-                  <img 
-                    src={`/products/${slug}/roxy.png`} 
-                    alt="Good Girl Shirt"
-                    className="w-full h-full object-cover"
-                  />
-                </Link>
-              </div>
-              <div className="p-6">
-                <Link href={`/shop/${slug}`}>
-                  <h3 className="font-black text-3xl tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-2">
-                    {weeklyProduct.title}
-                  </h3>
-                </Link>
-                <div className="text-lg text-white/70 mb-4">{weeklyProduct.desc}</div>
-                <div className="flex items-center justify-between">
-                  <div className="text-4xl font-black">${weeklyProduct.price}</div>
-                  <Link 
-                    href={`/shop/${slug}`}
-                    className="px-8 py-3 bg-white text-black text-sm font-black active:bg-[#ff0088] active:text-white transition-all"
-                  >
-                    ADD TO CART
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left: Weekly Drop Card */}
+            <div className="max-w-md mx-auto w-full">
+              <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
+                <div className="aspect-square bg-black border border-white/10 overflow-hidden">
+                  <Link href={`/shop/${slug}`}>
+                    <img 
+                      src={`/products/${slug}/roxy.png`} 
+                      alt={weeklyProduct.title}
+                      className="w-full h-full object-cover"
+                    />
                   </Link>
+                </div>
+                <div className="p-6">
+                  <Link href={`/shop/${slug}`}>
+                    <h3 className="font-black text-3xl tracking-[-1px] text-[#ff0088] hover:text-[#39ff14] transition-colors mb-2">
+                      {weeklyProduct.title}
+                    </h3>
+                  </Link>
+                  <div className="text-lg text-white/70 mb-4">{weeklyProduct.desc}</div>
+                  <div>
+                    <div className="text-4xl font-black">${weeklyProduct.price}</div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Right: Joke Ad Image */}
+            <div className="max-w-lg mx-auto w-full">
+              <img 
+                src="/joke-ad.png" 
+                alt="Joke Ad"
+                className="w-full h-auto object-contain rounded"
+              />
+            </div>
           </div>
-          <div className="text-center mt-8">
+
+          <div className="text-center mt-10">
             <a href="/shop" className="inline-block px-8 py-3 bg-black text-white text-sm font-black tracking-[1px] border-2 border-[#ff0088] hover:bg-[#ff0088] hover:text-white active:bg-[#9b00ff] active:border-[#9b00ff] transition-all">
               SHOP ALL CHAOS
             </a>
           </div>
         </div>
-      </section>
-
-      {/* RESPECT THE GLITCH - Full lower section */}
+      </section>      {/* RESPECT THE GLITCH - Full lower section */}
       <section className="py-20 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto space-y-4 text-lg mb-10">
