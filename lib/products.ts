@@ -195,4 +195,23 @@ export const products: Product[] = [
       "2XL": 5338187311,
     },
   },
+  {
+    slug: "stop-staring",
+    title: "STOP STARING",
+    price: 29.99,
+    flavor: "CHAOTIC ENERGY",
+    bullets: [
+      { icon: "🐓", text: "Stop Staring — At my cock. The rooster makes it classy." },
+      { icon: "😈", text: "Zero subtlety. Maximum chaos." },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Soft, durable, actually good quality" },
+      { icon: "⚫", text: "Asphalt color — Dark gray with a cool undertone" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for that oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Will not crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "Stop Staring T-Shirt | Unhinged Threads",
+    metaDescription: "Stop Staring. At my cock. The rooster makes it classy.",
+    catalogVariantIds: {},
+    printfulVariants: {},
+  },
 ];
