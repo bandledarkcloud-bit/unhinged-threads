@@ -1,7 +1,20 @@
+'use client';
+
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', {
+        value: 29.99,
+        currency: 'USD',
+        content_ids: ['fireworks-director']
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white font-mono">
       <Header />

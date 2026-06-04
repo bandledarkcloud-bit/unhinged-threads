@@ -11,7 +11,18 @@ export default function ProductClient({ product }: { product: Product }) {
   const handleAddToCart = async () => {
     await addToCart(product.slug, 1, selectedSize);
     window.dispatchEvent(new Event('cartUpdated'));
-    
+
+    // Meta Pixel AddToCart
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'AddToCart', {
+        value: product.price,
+        currency: 'USD',
+        content_ids: [product.slug],
+        content_type: 'product',
+        content_name: product.title,
+      });
+    }
+
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };

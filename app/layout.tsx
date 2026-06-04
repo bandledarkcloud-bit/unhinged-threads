@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     default: "UNHINGED THREADS™ | Respect The Glitch",
     template: "%s | UNHINGED THREADS",
   },
-  description: "We say what you’re thinking but shouldn’t. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
+  description: "We say what you're thinking but shouldn't. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
   icons: {
     icon: "/emoticon.png",
   },
   openGraph: {
     title: "UNHINGED THREADS™ | Respect The Glitch",
-    description: "We say what you’re thinking but shouldn’t. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
+    description: "We say what you're thinking but shouldn't. Chaotic, unfiltered, degenerate streetwear for people who are one bad decision away from greatness.",
     images: [
       {
         url: "/og-image.png",
@@ -49,30 +49,37 @@ export const metadata: Metadata = {
         alt: "UNHINGED THREADS - Respect The Glitch",
       },
     ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "UNHINGED THREADS™ | Respect The Glitch",
-    description: "We say what you’re thinking but shouldn’t. Chaotic, unfiltered, degenerate streetwear.",
-    images: ["/og-image.png"],
-  },
-  alternates: {
-    canonical: "https://threadglitch.com",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
       className={`${geistMono.variable} ${bebas.variable} ${anton.variable} ${oswald.variable} h-full antialiased`}
     >
+      <head>
+        {/* Meta Pixel Base Code */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1025626486564773'); 
+            fbq('track', 'PageView');
+          `}
+        </Script>
+      </head>
+
       <body className="min-h-full flex flex-col bg-black text-white">
         {children}
         <Footer />
@@ -92,7 +99,7 @@ export default function RootLayout({
             const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
             
             // Your home IP range
-            const isHomeIP = /^74\\.244\\.21\\./.test('74.244.21.19');
+            const isHomeIP = /^74\.244\.21\./.test('74.244.21.19');
 
             if (isLocalhost || isHomeIP) {
               gtag('config', 'G-HZJG2GFXW6', { 

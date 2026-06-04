@@ -3,6 +3,7 @@ import { getProduct } from '@/lib/products';
 import ProductClient from './components/ProductClient';
 import ProductImageGallery from './components/ProductImageGallery';
 import Header from '@/components/Header';
+import Script from 'next/script';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -58,6 +59,21 @@ export default async function ProductPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-black text-white font-mono">
       <Header />
+      
+      {/* Meta Pixel ViewContent - Fireworks Director */}
+      {slug === "fireworks-director" && (
+        <Script id="meta-viewcontent-fireworks" strategy="afterInteractive">
+          {`
+            fbq('track', 'ViewContent', {
+              value: 29.99,
+              currency: 'USD',
+              content_ids: ['fireworks-director'],
+              content_type: 'product',
+              content_name: 'Fireworks Director'
+            });
+          `}
+        </Script>
+      )}
 
       <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-12 pb-16 md:pb-20">
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:gap-10 items-start lg:items-start">
