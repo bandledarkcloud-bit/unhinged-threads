@@ -215,4 +215,30 @@ export const products: Product[] = [
       "2XL": 5338212058,
     },
   },
+
+  {
+    slug: "when-im-horny",
+    title: "WHEN IM HORNY",
+    price: 29.99,
+    flavor: "FLIRTY / SPICY",
+    bullets: [
+      { icon: "😈", text: "Zero subtlety. Maximum chaos." },
+      { icon: "🔥", text: "When the mood hits." },
+      { icon: "👕", text: "Premium Bella + Canvas 3001 — Stupid soft and comfortable" },
+      { icon: "🌸", text: "Charity Pink — Soft, bold, and dangerously flirty" },
+      { icon: "📏", text: "Unisex fit — True to size. Size up for oversized streetwear look" },
+      { icon: "🔥", text: "High-quality DTG print — Won't crack, peel, or fade" },
+    ],
+    sizes: ["S", "M", "L", "XL", "2XL"],
+    metaTitle: "When Im Horny T-Shirt | Unhinged Threads",
+    metaDescription: "When Im Horny. Zero subtlety. Maximum chaos.",
+    catalogVariantIds: { S: 21570, M: 21571, L: 21572, XL: 21573, "2XL": 21574 },
+    printfulVariants: {
+      S: 5342146267,
+      M: 5342146268,
+      L: 5342146269,
+      XL: 5342146270,
+      "2XL": 5342146271,
+    },
+  },
 ];
