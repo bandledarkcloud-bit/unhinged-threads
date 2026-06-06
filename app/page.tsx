@@ -225,7 +225,51 @@ export default function UnhingedHome() {
             </a>
           </div>
         </div>
-      </section>      {/* RESPECT THE GLITCH - Full lower section */}
+      </section>      {/* IN THE WILD - Customer Photos */}
+      <section className="py-16 bg-black border-t border-white/10">
+        <div className="max-w-[1680px] mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-[#9b00ff] text-5xl md:text-6xl font-black tracking-[-3px] leading-none">
+              IN THE WILD
+            </h2>
+            <p className="text-xl text-[#39ff14] mt-3">
+              Real people doing real shit in our shirts
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="aspect-[4/5]">
+              <img 
+                src="/customer-photos/photo1.jpg" 
+                alt="" 
+                className="w-full h-full object-cover rounded-2xl" 
+              />
+            </div>
+            <div className="aspect-[4/5]">
+              <img 
+                src="/customer-photos/photo2.jpg" 
+                alt="" 
+                className="w-full h-full object-cover rounded-2xl" 
+              />
+            </div>
+            <div className="aspect-[4/5]">
+              <img 
+                src="/customer-photos/photo3.jpg" 
+                alt="" 
+                className="w-full h-full object-cover rounded-2xl" 
+              />
+            </div>
+            <div className="aspect-[4/5]">
+              <img 
+                src="/customer-photos/photo4.jpg" 
+                alt="" 
+                className="w-full h-full object-cover rounded-2xl" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* RESPECT THE GLITCH - Full lower section */}
       <section className="py-20 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto space-y-4 text-lg mb-10">
