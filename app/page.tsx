@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { products } from '@/lib/products';
 import Header from '@/components/Header';
+import SubmitPhotoButton from '@/components/SubmitPhotoButton';
 
 export const metadata: Metadata = {
   title: "UNHINGED THREADS™ | Respect The Glitch",
@@ -266,6 +267,11 @@ export default function UnhingedHome() {
                 className="w-full h-full object-cover rounded-2xl" 
               />
             </div>
+          </div>
+
+          <div className="text-center mt-10">
+            <SubmitPhotoButton />
+            <p className="text-[#39ff14] text-sm mt-3 tracking-[1px]">Get 15% off when you submit</p>
           </div>
         </div>
       </section>
