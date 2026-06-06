@@ -108,6 +108,7 @@ export default function SubmitPhotoButton() {
 
                   <div>
                     <label className="block text-sm font-black tracking-[1px] mb-2 text-[#ff0088]">EMAIL (OPTIONAL)</label>
+                    <p className="text-xs text-[#39ff14] mb-2">Get 15% off your next order</p>
                     <input
                       type="email"
                       value={email}
