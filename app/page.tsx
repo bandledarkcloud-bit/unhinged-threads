@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 };
 
 const weeklyProduct = {
-  title: "FIREWORKS DIRECTOR",
+  title: "AMERICA FIRST NOT ISRAEL FIRST",
   price: 29.99,
   tag: "CHAOTIC PATRIOTISM",
-  desc: "I run, you run.",
+  desc: "America First. Not Israel First. Zero subtlety.",
 };
 
 export default function UnhingedHome() {
-  const slug = "fireworks-director";
+  const slug = "america-first";
 
   const flavorRows = [
     { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },
