@@ -226,7 +226,7 @@ export default function UnhingedHome() {
             </a>
           </div>
         </div>
-      </section>      {/* IN THE WILD - Customer Photos */}
+      </section>      {/* IN THE WILD - Working Marquee Carousel */}
       <section className="py-16 bg-black border-t border-white/10">
         <div className="max-w-[1680px] mx-auto px-6">
           <div className="text-center mb-12">
@@ -238,34 +238,18 @@ export default function UnhingedHome() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="aspect-[4/5]">
-              <img 
-                src="/customer-photos/photo1.jpg" 
-                alt="" 
-                className="w-full h-full object-cover rounded-2xl" 
-              />
-            </div>
-            <div className="aspect-[4/5]">
-              <img 
-                src="/customer-photos/photo2.jpg" 
-                alt="" 
-                className="w-full h-full object-cover rounded-2xl" 
-              />
-            </div>
-            <div className="aspect-[4/5]">
-              <img 
-                src="/customer-photos/photo3.jpg" 
-                alt="" 
-                className="w-full h-full object-cover rounded-2xl" 
-              />
-            </div>
-            <div className="aspect-[4/5]">
-              <img 
-                src="/customer-photos/photo4.jpg" 
-                alt="" 
-                className="w-full h-full object-cover rounded-2xl" 
-              />
+          {/* Working Marquee Carousel */}
+          <div className="overflow-hidden py-8 border-y border-white/10">
+            <div className="flex gap-6 animate-marquee">
+              {[1,2,3,4,5,1,2,3,4,5].map((num, i) => (
+                <div key={i} className="flex-shrink-0">
+                  <img 
+                    src={`/customer-photos/photo${num}.jpg`} 
+                    alt={`Customer ${num}`}
+                    className="h-[380px] w-auto object-cover rounded-xl border border-white/10" 
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
