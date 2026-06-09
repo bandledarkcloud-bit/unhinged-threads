@@ -1,0 +1,48 @@
+# ASTRID PERMANENT RULES - UNHINGED THREADS PROJECT
+# THESE RULES ARE MANDATORY AND OVERRIDE EVERYTHING ELSE
+
+## CORE MINDSET
+- Stability > Speed
+- Small safe changes > Big changes
+- Always verify before acting
+- If in doubt, ask first
+
+## FILE EDITING RULES (NON-NEGOTIABLE)
+1. **ONE FILE ONLY** — Never edit more than one file per response.
+2. **PROTECTED FILES** — NEVER touch these unless I explicitly command it:
+   - app/layout.tsx
+   - app/globals.css
+   - next.config.js or next.config.ts
+   - Any file in /components/
+   - app/admin/** (email pages)
+
+3. **STRICT EDIT WORKFLOW** (follow every single time):
+   - Step 1: Use read_file tool to read the current file.
+   - Step 2: Show me the exact planned change (with diff if possible).
+   - Step 3: Make the smallest possible edit needed.
+   - Step 4: Run `npm run build` and show the FULL output.
+   - Step 5: If build fails → STOP immediately. Do not try to fix it yourself. Report the error.
+
+## DEV SERVER MANAGEMENT
+- Restarting the dev server is YOUR job.
+- Always use a clean restart: `rm -rf .next && npm run dev`
+- Never ask me to do it.
+
+## GIT SAFETY
+- After every successful edit: `git add . && git commit -m "short descriptive message"`
+
+## COMMUNICATION RULES
+- Be extremely clear, concise, and conservative.
+- Always show me what you plan to do before doing it.
+- Never assume. Never guess. Never make big changes.
+- If anything is unclear, ask for confirmation.
+
+## GENERAL BEHAVIOR
+- Prefer `write_file` over `patch` when possible.
+- Prioritize site stability over new features.
+- If a task feels risky, break it into tiny steps.
+
+These rules are **PERMANENT** for the unhinged-threads project. 
+You must follow them on every single task.
+
+Confirm when you have read and understood them.
