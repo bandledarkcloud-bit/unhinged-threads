@@ -37,7 +37,7 @@ export default function CartPage() {
 
 
   const fetchShippingRates = async () => {
-    if (!address.name || !address.address1 || !address.city || !address.state || !address.zip) {
+    if (!address.name || !address.address1 || !address.city || !address.zip) {
       alert("Please fill in all address fields");
       return;
     }
@@ -213,7 +213,7 @@ export default function CartPage() {
               <div className="grid grid-cols-2 gap-4">
                 <input type="text" placeholder="City" className="bg-black border border-white/30 px-4 py-3 text-white"
                   value={address.city} onChange={e => setAddress({...address, city: e.target.value})} />
-                <input type="text" placeholder="State" className="bg-black border border-white/30 px-4 py-3 text-white"
+                <input type="text" placeholder="State (1 for non US)" className="bg-black border border-white/30 px-4 py-3 text-white"
                   value={address.state} onChange={e => setAddress({...address, state: e.target.value})} />
               </div>
               <input type="text" placeholder="ZIP Code" className="w-full bg-black border border-white/30 px-4 py-3 text-white"

@@ -24,26 +24,11 @@ const weeklyProduct = {
 export default function UnhingedHome() {
   const slug = "america-first";
 
-  const flavorRows = [
-    { header: "FLIRTY / SPICY", sub: "Say less. Mean more. Get in trouble faster." },
-    { header: "MENTAL HEALTH", sub: "Therapy is $150. Being unhinged is $29.99. We chose the cheaper option." },
-    { header: "RELATIONSHIP CHAOS", sub: "We don't fix relationships. We make shirts for the aftermath." },
-    { header: "CORPORATE HATRED", sub: "Fuck your job. Wear the shirt that agrees with you." },
-    { header: "CHAOTIC PATRIOTISM", sub: "America, but make it feral." },
-    { header: "HOLIDAY CHAOS", sub: "Santa's watching. And he's disappointed." },
-  ];
-
-  const productsByFlavor = products.reduce((acc, product) => {
-    if (!acc[product.flavor]) acc[product.flavor] = [];
-    acc[product.flavor].push(product);
-    return acc;
-  }, {} as Record<string, typeof products>);
-
   return (
     <div className="min-h-screen bg-black text-white font-mono font-bebas overflow-x-hidden">
       <Header />
 
-            {/* DESKTOP HERO (Hidden on mobile, flex on desktop) */}
+      {/* DESKTOP HERO */}
       <section 
         className="hero relative h-[620px] hidden md:flex items-center bg-black overflow-hidden"
         style={{
@@ -52,7 +37,6 @@ export default function UnhingedHome() {
           backgroundPosition: "center"
         }}
       >
-        {/* 1. THE LOGO: Centered in left dead space and upscaled to max-w-[420px] */}
         <div className="absolute left-[12%] top-1/2 -translate-y-1/2 z-20">
           <img 
             src="/header.png" 
@@ -61,9 +45,7 @@ export default function UnhingedHome() {
           />
         </div>
 
-        {/* 2. THE TEXT & CTA: Centered precisely and upscaled for maximum impact */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center text-center w-full max-w-[550px]">
-          {/* Upscaled Slogan Text Stack */}
           <div className="mb-8 flex flex-col items-center w-full">
             <p className="text-6xl font-black tracking-[-2px] text-[#39ff14] uppercase leading-none mb-1">
               Unfiltered.
@@ -82,7 +64,6 @@ export default function UnhingedHome() {
             </p>
           </div>
 
-          {/* Centered CTA Button scaled to match */}
           <a 
             href="/shop" 
             className="w-full max-w-[260px] px-8 py-4 bg-black text-white border-2 border-[#ff0088] text-base font-black tracking-[2px] hover:bg-[#ff0088] hover:text-white hover:shadow-[0_0_20px_#ff0088] active:bg-[#9b00ff] active:border-[#9b00ff] transition-all duration-200 text-center uppercase"
@@ -92,7 +73,7 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-                                          {/* MOBILE HERO (Flex on mobile, hidden on desktop) */}
+      {/* MOBILE HERO */}
       <section 
         className="hero relative min-h-[480px] flex md:hidden flex-col items-center justify-center bg-black px-6 pt-6 pb-10 border-b border-zinc-900 overflow-hidden"
         style={{
@@ -101,33 +82,25 @@ export default function UnhingedHome() {
           backgroundPosition: "left center"
         }}
       >
-        {/* Content Container */}
         <div className="z-10 flex flex-col items-center text-center w-full max-w-sm mx-auto relative">
-          {/* Mobile Logo */}
           <img 
             src="/header.png" 
             alt="Unhinged Threads" 
             className="max-w-[240px] w-full object-contain mb-4" 
           />
           
-          {/* Mobile Taglines */}
           <div className="mb-6 flex flex-col items-center w-full">
             <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-1">Unfiltered.</p>
             <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-1">Unapologetic.</p>
             <p className="text-4xl font-black tracking-[-1px] text-[#39ff14] uppercase leading-none mb-3">Unhinged.</p>
             <p 
               className="glitch-text font-black block text-[#39ff14] tracking-wide uppercase whitespace-nowrap"
-              style={{ 
-                fontSize: "calc(14px + 1.2vw)", 
-                textShadow: '0 0 8px #39ff14',
-                maxWidth: '100%'
-              }}
+              style={{ fontSize: "calc(14px + 1.2vw)", textShadow: '0 0 8px #39ff14' }}
             >
               Respect The Glitch ⚡️
             </p>
           </div>
 
-          {/* Mobile CTA Button */}
           <a 
             href="/shop" 
             className="w-full max-w-[280px] px-6 py-3.5 bg-black text-white border-2 border-[#ff0088] text-sm font-black tracking-[2px] active:bg-[#ff0088] text-center uppercase"
@@ -175,7 +148,7 @@ export default function UnhingedHome() {
         </div>
       </section>
 
-      {/* WEEKLY DROP - Two column layout */}
+      {/* WEEKLY DROP */}
       <section className="py-16 bg-black border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-8 text-center">
@@ -184,7 +157,6 @@ export default function UnhingedHome() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left: Weekly Drop Card */}
             <div className="max-w-md mx-auto w-full">
               <div className="product-card border border-white/10 p-2 bg-zinc-950 hover:border-[#39ff14] transition-all">
                 <div className="aspect-square bg-black border border-white/10 overflow-hidden">
@@ -210,7 +182,6 @@ export default function UnhingedHome() {
               </div>
             </div>
 
-            {/* Right: Joke Ad Image */}
             <div className="max-w-lg mx-auto w-full">
               <img 
                 src="/joke-ad.png" 
@@ -226,7 +197,9 @@ export default function UnhingedHome() {
             </a>
           </div>
         </div>
-      </section>      {/* IN THE WILD - Working Marquee Carousel */}
+      </section>
+
+      {/* IN THE WILD - Clean Marquee */}
       <section className="py-16 bg-black border-t border-white/10">
         <div className="max-w-[1680px] mx-auto px-6">
           <div className="text-center mb-12">
@@ -238,7 +211,6 @@ export default function UnhingedHome() {
             </p>
           </div>
 
-          {/* Working Marquee Carousel */}
           <div className="overflow-hidden py-8 border-y border-white/10">
             <div className="flex gap-6 animate-marquee">
               {[1,2,3,4,5,1,2,3,4,5].map((num, i) => (
@@ -259,7 +231,8 @@ export default function UnhingedHome() {
           </div>
         </div>
       </section>
-      {/* RESPECT THE GLITCH - Full lower section */}
+
+      {/* RESPECT THE GLITCH */}
       <section className="py-20 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto space-y-4 text-lg mb-10">
@@ -283,4 +256,3 @@ export default function UnhingedHome() {
     </div>
   );
 }
-
